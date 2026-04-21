@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Why we don't sell tiers — Ascent</title>
+<meta name="description" content="Tier sheets exist to de-risk buying — not to improve outcomes. For bespoke work, they actively hurt the buyer. An argument for scoping to fit." />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Why we don't sell tiers" />
+<meta property="og:description" content="Tier sheets exist to de-risk buying, not to improve outcomes." />
+
+<link rel="canonical" href="https://getascent.co/thinking/no-tiers.html" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../shared.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why we don't sell tiers",
+  "author": { "@type": "Person", "name": "Jamil Ahmed" },
+  "publisher": { "@type": "Organization", "name": "Ascent", "url": "https://getascent.co" },
+  "datePublished": "2026-03-20",
+  "description": "Tier sheets exist to de-risk buying, not to improve outcomes.",
+  "mainEntityOfPage": "https://getascent.co/thinking/no-tiers.html"
+}
+</script>
+
+<style>
+  .essay-hero {
+    padding: 80px 0 40px;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .essay-hero .breadcrumb {
+    display: inline-flex; gap: 8px; margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute);
+  }
+  .essay-hero .breadcrumb a { color: var(--ink-mute); transition: color 0.15s; }
+  .essay-hero .breadcrumb a:hover { color: var(--ink); }
+  .essay-hero .breadcrumb .sep { opacity: 0.4; }
+  .essay-hero h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    margin-bottom: 24px;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    max-width: 820px;
+  }
+  .essay-hero h1 em { font-style: italic; color: var(--accent); }
+  .essay-hero .meta {
+    display: flex; gap: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute);
+  }
+
+  article.essay { padding: 60px 0 100px; }
+  article.essay .prose { max-width: 680px; margin: 0 auto; padding: 0 32px; }
+  article.essay .lead {
+    font-family: 'Source Serif 4', serif; font-size: 24px; line-height: 1.4;
+    color: var(--ink); margin-bottom: 40px; letter-spacing: -0.02em;
+  }
+  article.essay .lead em { font-style: italic; color: var(--accent); }
+  article.essay p {
+    font-family: 'Source Serif 4', serif; font-size: 19px; line-height: 1.6;
+    color: var(--ink-soft); margin-bottom: 24px; letter-spacing: -0.012em;
+  }
+  article.essay p em { font-style: italic; color: var(--ink); }
+  article.essay h2 {
+    font-size: clamp(28px, 3.5vw, 38px); margin-top: 56px; margin-bottom: 24px;
+    letter-spacing: -0.028em; line-height: 1.1;
+  }
+  article.essay h2 em { font-style: italic; color: var(--accent); }
+  article.essay blockquote {
+    border-left: 3px solid var(--accent); padding: 16px 0 16px 32px;
+    margin: 40px 0; font-family: 'Source Serif 4', serif; font-style: italic;
+    font-size: 22px; color: var(--ink); line-height: 1.4; letter-spacing: -0.02em;
+  }
+  article.essay ul { margin: 24px 0; padding-left: 0; list-style: none; }
+  article.essay ul li {
+    font-family: 'Source Serif 4', serif; font-size: 19px; line-height: 1.55;
+    color: var(--ink-soft); padding: 8px 0 8px 24px; position: relative;
+  }
+  article.essay ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+  article.essay hr { border: none; border-top: 1px solid var(--ink-line); margin: 48px 0; }
+
+  .essay-cta {
+    max-width: 680px; margin: 80px auto 0; padding: 40px;
+    background: var(--ink); color: var(--bg); border-radius: 16px;
+  }
+  .essay-cta .mono { color: rgba(245, 242, 234, 0.5); margin-bottom: 16px; display: block; }
+  .essay-cta h3 {
+    font-family: 'Source Serif 4', serif; font-size: 28px; color: var(--bg);
+    margin-bottom: 16px; letter-spacing: -0.025em; line-height: 1.2; font-weight: 400;
+  }
+  .essay-cta h3 em { font-style: italic; color: var(--accent); }
+  .essay-cta p { font-size: 15px; color: rgba(245, 242, 234, 0.7); margin-bottom: 24px; line-height: 1.55; }
+  .essay-cta .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+  .essay-cta .btn-light {
+    padding: 11px 20px; background: var(--bg); color: var(--ink);
+    border: 1px solid var(--bg); border-radius: 6px; font-size: 13.5px; font-weight: 500;
+  }
+  .essay-cta .btn-light:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .essay-cta .btn-outline {
+    padding: 11px 20px; background: transparent; color: var(--bg);
+    border: 1px solid rgba(245, 242, 234, 0.2); border-radius: 6px;
+    font-size: 13.5px; font-weight: 500;
+  }
+  .essay-cta .btn-outline:hover { border-color: rgba(245, 242, 234, 0.5); }
+
+  .next-reads { max-width: 680px; margin: 60px auto 0; padding: 0 32px; }
+  .next-reads .mono { display: block; margin-bottom: 16px; }
+  .next-reads a {
+    display: block; padding: 20px 0; border-top: 1px solid var(--ink-line);
+    transition: padding 0.2s;
+  }
+  .next-reads a:hover { padding-left: 12px; }
+  .next-reads a:last-child { border-bottom: 1px solid var(--ink-line); }
+  .next-reads a h4 {
+    font-family: 'Source Serif 4', serif; font-size: 20px; letter-spacing: -0.02em;
+    margin-bottom: 4px; transition: color 0.15s; font-weight: 400;
+  }
+  .next-reads a:hover h4 { color: var(--accent); }
+  .next-reads a p { font-size: 13px; color: var(--ink-mute); }
+
+  @media (max-width: 700px) {
+    .essay-hero { padding: 40px 0 24px; }
+    article.essay .prose { padding: 0 20px; }
+    article.essay { padding: 32px 0 60px; }
+    .essay-cta { padding: 32px 24px; }
+    .next-reads { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+      <a href="/thinking.html" class="active">Thinking</a>
+      <a href="/work.html">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="essay-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/thinking.html">Thinking</a>
+      <span class="sep">/</span>
+      <span>No tiers</span>
+    </div>
+    <h1>Why we don't sell <em>tiers</em>.</h1>
+    <div class="meta">
+      <span>March 2026</span>
+      <span>3 min read</span>
+      <span>By Jamil</span>
+    </div>
+  </div>
+</header>
+
+<article class="essay">
+  <div class="prose">
+
+    <p class="lead">Tier sheets exist to de-risk buying — not to improve outcomes. For bespoke work, <em>they actively hurt the buyer.</em></p>
+
+    <p>Most agency pricing looks like a three-column table. Bronze, Silver, Gold. Or Starter, Growth, Scale. The buyer picks the column that fits their budget. Everyone goes home.</p>
+
+    <p>This is a nice feeling. It is a terrible way to buy bespoke work.</p>
+
+    <h2>What tiers actually <em>do</em></h2>
+
+    <p>Tiers are a shortcut around a conversation neither side wants to have. The buyer avoids admitting they don't know what they need. The seller avoids asking questions that might disqualify the deal.</p>
+
+    <p>The result is that the buyer pays for a pre-packaged quantity of work — messages sent, contacts added, hours delivered — that has no guaranteed relationship to the outcome they want.</p>
+
+    <blockquote>If two companies with different buyers, different offers, and different sales cycles pay the same amount for "400 LinkedIn messages," at least one of them is being overcharged.</blockquote>
+
+    <p>Usually both.</p>
+
+    <h2>What happens when you <em>scope to fit</em></h2>
+
+    <p>Scoping to fit is slower. It means the first conversation is a real conversation. It means sometimes the answer is "we wouldn't work together." It means the seller can't just hand over a PDF and wait.</p>
+
+    <p>What you get in return:</p>
+
+    <ul>
+      <li>The work is sized to the actual outcome, not the package.</li>
+      <li>The scope flexes as the program runs — because nothing on the first call was assumed.</li>
+      <li>The seller is incentivised to disqualify bad fits, because they can't pad them into a tier.</li>
+      <li>You know, going in, that the person on the other side was willing to say no.</li>
+    </ul>
+
+    <h2>The honest version</h2>
+
+    <p>Tier sheets exist because buyers want to compare. Comparison is a fine instinct for software. It is a broken instinct for services where the outcome depends on the fit.</p>
+
+    <p>If you need to put three proposals in a spreadsheet and sort by price, the decision you're making isn't about partnerships. It's about procurement. Good service businesses will opt out of that conversation, because they can't compete on it and shouldn't.</p>
+
+    <p>Ascent quotes after the first call. Not because we're trying to hide the number — the number is whatever fits the work. But because the number can't exist before the work is understood, and anyone who gives you one before then is selling you a tier with a fresh coat of paint.</p>
+
+    <hr>
+
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.08em;">— Jamil runs Ascent. Partnerships open Q2 2026.</p>
+
+  </div>
+
+  <div class="essay-cta">
+    <span class="mono">§ The first call</span>
+    <h3>No deck. No tier sheet. <em>Just a real conversation.</em></h3>
+    <p>Thirty minutes. You tell me what you've tried and what you're selling. I tell you whether this is a fit — including if it isn't. Then we scope, or we don't.</p>
+    <div class="ctas">
+      <a href="/contact.html" class="btn-light">Book a call →</a>
+      <a href="/fit.html" class="btn-outline">Check fit first</a>
+    </div>
+  </div>
+
+  <div class="next-reads">
+    <span class="mono">§ Read next</span>
+    <a href="/thinking/structural-misalignment.html">
+      <h4>Structural misalignment is why your outbound is broken.</h4>
+      <p>The thesis underneath the whole service. 6 min.</p>
+    </a>
+    <a href="/thinking/why-outbound-fails.html">
+      <h4>The three quiet ways outbound programs die.</h4>
+      <p>A field guide to diagnosing your own program. 4 min.</p>
+    </a>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+
+<script src="..shared.js" defer></script>
+</body>
+</html>

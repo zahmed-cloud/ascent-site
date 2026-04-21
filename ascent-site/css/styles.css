@@ -1,0 +1,338 @@
+/* Ascent — shared design system */
+
+:root {
+  --bg: #f5f2ea;
+  --bg-raised: #efebe0;
+  --bg-deep: #e8e3d4;
+  --ink: #11110f;
+  --ink-soft: #2a2a26;
+  --ink-mute: #85827a;
+  --ink-line: #d6d1c4;
+  --ink-line-soft: #e4dfd1;
+  --accent: #d9432a;
+  --accent-soft: rgba(217, 67, 42, 0.08);
+  --success: #2d7a3f;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+::selection { background: var(--ink); color: var(--bg); }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  font-size: 15px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+  letter-spacing: -0.005em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.serif { font-family: 'Source Serif 4', serif; }
+.serif-i { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; }
+
+.mono {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.container-narrow { max-width: 760px; }
+.container-read { max-width: 680px; }
+
+/* NAV */
+nav.site-nav {
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(245, 242, 234, 0.82);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  z-index: 100;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, padding 0.25s ease;
+}
+nav.site-nav.scrolled {
+  border-bottom-color: var(--ink-line);
+  padding: 14px 0;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  font-family: 'Source Serif 4', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  transition: opacity 0.15s;
+}
+.logo:hover { opacity: 0.7; }
+.logo .dot { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.nav-links > a:not(.btn) {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  transition: color 0.15s, background 0.15s;
+  position: relative;
+  padding: 8px 14px;
+  border-radius: 6px;
+  letter-spacing: -0.005em;
+}
+.nav-links > a:not(.btn):hover {
+  color: var(--ink);
+  background: rgba(17, 17, 15, 0.04);
+}
+.nav-links > a.active:not(.btn) {
+  color: var(--ink);
+}
+.nav-links > a.active:not(.btn)::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+.nav-links .nav-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--ink-line);
+  margin: 0 10px 0 14px;
+}
+
+/* =========================================================================
+   PRIMARY BUTTON — dark ink background, white text, decisive hover
+   Locked with max specificity + !important so nothing can override
+   ========================================================================= */
+a.btn,
+button.btn,
+.btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 11px 20px !important;
+  background: var(--ink) !important;
+  color: #ffffff !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease !important;
+  border: 1px solid var(--ink) !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  letter-spacing: -0.005em !important;
+  text-decoration: none !important;
+  box-shadow: 0 1px 0 rgba(17, 17, 15, 0.08), 0 2px 10px rgba(17, 17, 15, 0.12) !important;
+  white-space: nowrap;
+}
+a.btn:visited,
+a.btn:link { color: #ffffff !important; }
+.btn > * { color: inherit !important; }
+
+a.btn:hover,
+button.btn:hover,
+.btn:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 0 rgba(17, 17, 15, 0.08), 0 8px 24px rgba(217, 67, 42, 0.28) !important;
+}
+a.btn:active,
+button.btn:active,
+.btn:active { transform: translateY(0) !important; }
+
+.btn-lg { padding: 14px 26px !important; font-size: 14.5px !important; }
+
+/* GHOST button — outline style, becomes solid on hover */
+a.btn.btn-ghost,
+button.btn.btn-ghost,
+.btn-ghost {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--ink-line) !important;
+  box-shadow: none !important;
+}
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+  box-shadow: 0 1px 0 rgba(17, 17, 15, 0.1);
+}
+
+/* Dark button — used on light surfaces when accent is elsewhere */
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 0 rgba(17, 17, 15, 0.1);
+}
+.btn-dark:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(217, 67, 42, 0.2);
+}
+
+/* FOOTER — shared */
+footer.site-footer {
+  padding: 56px 0 40px;
+  background: var(--bg);
+  border-top: 1px solid var(--ink-line);
+  margin-top: 0;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--ink-line);
+}
+.footer-logo {
+  font-family: 'Source Serif 4', serif;
+  font-size: 28px;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+.footer-logo .dot { color: var(--accent); }
+.footer-tag { margin-top: 8px; font-size: 13px; color: var(--ink-mute); }
+.footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: var(--ink-soft); transition: color 0.15s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-meta {
+  margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ENTRANCE ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.fade.d1 { animation-delay: 0.05s; }
+.fade.d2 { animation-delay: 0.18s; }
+.fade.d3 { animation-delay: 0.3s; }
+.fade.d4 { animation-delay: 0.42s; }
+.fade.d5 { animation-delay: 0.55s; }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================================================
+   SCROLL REVEAL — sections animate in as they enter viewport
+   Triggered by .in-view class added via IntersectionObserver in each page
+   ========================================================================= */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+[data-reveal].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal][data-reveal-delay="1"] { transition-delay: 0.08s; }
+[data-reveal][data-reveal-delay="2"] { transition-delay: 0.16s; }
+[data-reveal][data-reveal-delay="3"] { transition-delay: 0.24s; }
+
+/* Respect user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .fade { opacity: 1; transform: none; animation: none; }
+}
+
+/* =========================================================================
+   UNIFIED HOVER LAYER — every interactive element feels like same product
+   ========================================================================= */
+
+/* Footer links — subtle slide + underline reveal */
+.footer-links a {
+  position: relative;
+  transition: color 0.18s ease, padding-left 0.18s ease;
+}
+.footer-links a::before {
+  content: '→';
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  color: var(--accent);
+  transition: opacity 0.18s ease, left 0.18s ease;
+  font-size: 11px;
+}
+.footer-links a:hover {
+  color: var(--accent);
+  padding-left: 4px;
+}
+.footer-links a:hover::before {
+  opacity: 1;
+  left: -10px;
+}
+
+/* MOBILE */
+@media (max-width: 860px) {
+  .container { padding: 0 20px; }
+  .nav-links a:not(.btn) { display: none; }
+  .nav-links .nav-divider { display: none; }
+  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+  .footer-meta { flex-direction: column; gap: 12px; }
+}

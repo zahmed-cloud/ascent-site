@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ascent Lab — free tools for outbound operators</title>
+<meta name="description" content="Ascent Lab — free working tools for outbound operators. Run a teardown on your cold email, or grade a subject line, in seconds. Built by the Ascent team." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ascent Lab — free tools for outbound operators" />
+<meta property="og:description" content="Paste your cold email or subject line. Get a senior-operator critique in 20 seconds." />
+
+<link rel="canonical" href="https://getascent.co/tools.html" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="shared.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ascent Outbound Tools",
+  "applicationCategory": "BusinessApplication",
+  "description": "Free AI-powered tools for B2B outbound operators: email teardown and subject line grader.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "Ascent", "url": "https://getascent.co" }
+}
+</script>
+
+<style>
+  /* =========================================================================
+     TOOLS PAGE — premium UI, two tools in one
+     ========================================================================= */
+
+  body { background: var(--bg); }
+
+  /* HERO */
+  .tools-hero {
+    padding: 80px 0 40px;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .tools-hero .mono {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .tools-hero .mono .pulse {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .tools-hero h1 {
+    font-size: clamp(48px, 7vw, 92px);
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    max-width: 900px;
+  }
+  .tools-hero h1 em { font-style: italic; color: var(--accent); }
+  .tools-hero p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    max-width: 680px;
+    line-height: 1.4;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+
+  /* TAB SWITCHER */
+  .tool-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    margin: 48px 0 0;
+    border-bottom: 1px solid var(--ink-line);
+    max-width: 1120px;
+  }
+  .tool-tab {
+    flex: 1;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+  .tool-tab:hover { background: var(--bg-raised); }
+  .tool-tab.active {
+    border-bottom-color: var(--accent);
+  }
+  .tool-tab .tab-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .tool-tab.active .tab-mono { color: var(--accent); }
+  .tool-tab .tab-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--ink);
+    letter-spacing: -0.022em;
+    line-height: 1.2;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .tool-tab .tab-title em { font-style: italic; color: var(--accent); }
+  .tool-tab .tab-sub {
+    font-size: 13px;
+    color: var(--ink-mute);
+    line-height: 1.4;
+  }
+
+  /* TOOL PANEL — shared */
+  .tool-panel {
+    display: none;
+    padding: 56px 0 120px;
+  }
+  .tool-panel.active { display: block; }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* INPUT SIDE */
+  .tool-input {
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    padding: 32px;
+    position: sticky;
+    top: 92px;
+  }
+
+  .tool-input .field-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    margin-bottom: 10px;
+  }
+  .tool-input .field-label .req { color: var(--accent); margin-left: 3px; }
+
+  .tool-input .field-group { margin-bottom: 20px; }
+
+  .tool-input textarea,
+  .tool-input input[type="text"],
+  .tool-input select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+  }
+  .tool-input textarea:focus,
+  .tool-input input[type="text"]:focus,
+  .tool-input select:focus {
+    border-color: var(--ink);
+  }
+  .tool-input textarea {
+    resize: vertical;
+    min-height: 160px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .tool-input select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2385827a' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .char-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    display: block;
+    text-align: right;
+  }
+  .char-count.over { color: var(--accent); }
+
+  .run-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    transition: all 0.15s;
+    box-shadow: 0 1px 0 rgba(17, 17, 15, 0.08), 0 2px 10px rgba(217, 67, 42, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .run-btn:hover:not(:disabled) {
+    background: #c43a22;
+    border-color: #c43a22;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 0 rgba(17, 17, 15, 0.1), 0 4px 16px rgba(217, 67, 42, 0.3);
+  }
+  .run-btn:active { transform: translateY(0); }
+  .run-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .run-btn .spinner {
+    display: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  .run-btn.loading .spinner { display: block; }
+  .run-btn.loading .btn-label-idle { display: none; }
+  .run-btn .btn-label-loading { display: none; }
+  .run-btn.loading .btn-label-loading { display: inline; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .tool-meta {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--ink-line-soft);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* OUTPUT SIDE */
+  .tool-output {
+    min-height: 400px;
+  }
+
+  /* Empty state */
+  .tool-output .empty {
+    padding: 64px 32px;
+    text-align: center;
+    border: 1px dashed var(--ink-line);
+    border-radius: 16px;
+    background: transparent;
+  }
+  .tool-output .empty .mono { display: block; margin-bottom: 16px; color: var(--ink-mute); }
+  .tool-output .empty h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 24px;
+    color: var(--ink-soft);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .tool-output .empty h3 em { font-style: italic; color: var(--accent); }
+  .tool-output .empty p {
+    font-size: 14px;
+    color: var(--ink-mute);
+    max-width: 360px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* Loading state */
+  .tool-output .loading {
+    padding: 32px;
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    background: var(--bg-raised);
+  }
+  .loading-lines { display: flex; flex-direction: column; gap: 12px; }
+  .loading-line {
+    height: 14px;
+    background: linear-gradient(90deg, var(--bg-deep) 0%, var(--ink-line) 50%, var(--bg-deep) 100%);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+  .loading-line:nth-child(1) { width: 35%; height: 10px; }
+  .loading-line:nth-child(2) { width: 90%; }
+  .loading-line:nth-child(3) { width: 85%; }
+  .loading-line:nth-child(4) { width: 60%; }
+  .loading-line:nth-child(5) { width: 80%; margin-top: 12px; }
+  .loading-line:nth-child(6) { width: 95%; }
+  .loading-line:nth-child(7) { width: 70%; }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .loading-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .loading-label .dot-flash {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .loading-label .dot-flash span {
+    width: 4px; height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: dotFlash 1.2s ease-in-out infinite;
+  }
+  .loading-label .dot-flash span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-label .dot-flash span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotFlash {
+    0%, 60%, 100% { opacity: 0.2; }
+    30% { opacity: 1; }
+  }
+
+  /* Result card */
+  .result-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    padding: 36px;
+    animation: resultFade 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes resultFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-card .result-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .result-card h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 32px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .result-card h2 em { font-style: italic; color: var(--accent); }
+
+  .result-card .verdict-line {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    margin-bottom: 32px;
+    letter-spacing: -0.015em;
+    font-weight: 300;
+  }
+
+  /* Scores — used by both tools */
+  .score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .score-cell {
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .score-cell .score-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .score-cell .score-val {
+    font-family: 'Source Serif 4', serif;
+    font-size: 28px;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+  .score-cell .score-val .slash {
+    color: var(--ink-mute);
+    font-size: 16px;
+    margin-left: 2px;
+  }
+  .score-cell .score-bar {
+    height: 3px;
+    background: var(--ink-line);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .score-cell .score-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .score-cell .score-note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .score-cell[data-level="great"] .score-bar-fill { background: var(--success); }
+  .score-cell[data-level="great"] .score-val { color: var(--success); }
+  .score-cell[data-level="poor"] .score-bar-fill { background: var(--accent); }
+  .score-cell[data-level="poor"] .score-val { color: var(--accent); }
+
+  /* Body sections inside result */
+  .result-body {
+    border-top: 1px solid var(--ink-line-soft);
+    padding-top: 24px;
+  }
+  .result-body h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    margin: 24px 0 12px;
+    font-weight: 400;
+  }
+  .result-body h3:first-child { margin-top: 0; }
+  .result-body h3 em { font-style: italic; color: var(--accent); }
+  .result-body p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .result-body p em { font-style: italic; color: var(--ink); }
+  .result-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 20px;
+  }
+  .result-body ul li {
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 6px 0 6px 24px;
+    position: relative;
+    letter-spacing: -0.01em;
+  }
+  .result-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .result-body strong {
+    font-weight: 500;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  /* Rewrite block — the rewritten email from the AI */
+  .rewrite-block {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 28px;
+    border-radius: 12px;
+    margin: 24px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    letter-spacing: 0;
+  }
+  .rewrite-block .rewrite-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+    font-weight: 500;
+  }
+
+  /* Email capture — appears after result */
+  .post-capture {
+    margin-top: 32px;
+    padding: 28px;
+    border: 1px dashed var(--ink-line);
+    border-radius: 12px;
+    background: var(--bg);
+  }
+  .post-capture .mono { display: block; margin-bottom: 12px; }
+  .post-capture h4 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    letter-spacing: -0.022em;
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  .post-capture h4 em { font-style: italic; color: var(--accent); }
+  .post-capture p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .post-capture .field {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 10px;
+  }
+  .post-capture .field:focus-within { border-color: var(--ink); }
+  .post-capture .field input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+  }
+  .post-capture .field button {
+    padding: 10px 18px;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    transition: background 0.15s;
+  }
+  .post-capture .field button:hover { background: var(--accent); }
+  .post-capture .done {
+    display: none;
+    color: var(--success);
+    font-size: 14px;
+    padding: 10px 0;
+    line-height: 1.5;
+  }
+  .post-capture.done .field, .post-capture.done p { display: none; }
+  .post-capture.done .done { display: block; }
+
+  /* Try again footer */
+  .result-footer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ink-line-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .result-footer .try-again {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.15s;
+  }
+  .result-footer .try-again:hover { color: var(--ink); }
+  .result-footer .cta-book {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: gap 0.15s;
+    display: inline-flex;
+    gap: 6px;
+  }
+  .result-footer .cta-book:hover { gap: 10px; }
+
+  /* Error state */
+  .tool-output .error {
+    padding: 28px;
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+    background: rgba(217, 67, 42, 0.04);
+  }
+  .tool-output .error .mono { color: var(--accent); display: block; margin-bottom: 10px; }
+  .tool-output .error h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .tool-output .error p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  /* Why this tool exists — trust footer */
+  .trust-strip {
+    padding: 64px 0;
+    border-top: 1px solid var(--ink-line);
+    background: var(--bg-raised);
+  }
+
+  /* =========================================================================
+     EMAIL GATE MODAL
+     ========================================================================= */
+  .email-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .email-gate.shown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .gate-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 17, 15, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .gate-modal {
+    position: relative;
+    max-width: 460px;
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 0 20px 50px rgba(17, 17, 15, 0.2), 0 4px 12px rgba(17, 17, 15, 0.1);
+    transform: translateY(16px);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .email-gate.shown .gate-modal {
+    transform: translateY(0);
+  }
+  .gate-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .gate-modal h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .gate-modal h3 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .gate-modal p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 300;
+  }
+  .gate-field {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 10px;
+    transition: border-color 0.15s;
+  }
+  .gate-field:focus-within { border-color: var(--ink); }
+  .gate-field input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 11px 14px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    outline: none;
+    letter-spacing: -0.005em;
+  }
+  .gate-field input::placeholder { color: var(--ink-mute); }
+  .gate-btn {
+    padding: 11px 20px;
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    transition: all 0.15s;
+    box-shadow: 0 1px 0 rgba(17, 17, 15, 0.08), 0 2px 8px rgba(217, 67, 42, 0.2);
+  }
+  .gate-btn:hover {
+    background: #c43a22;
+    border-color: #c43a22;
+    transform: translateY(-1px);
+  }
+  .gate-note {
+    display: block;
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 520px) {
+    .gate-modal { padding: 28px 24px; }
+    .gate-modal h3 { font-size: 24px; }
+    .gate-field { flex-direction: column; padding: 8px; }
+    .gate-btn { width: 100%; padding: 12px 16px; }
+  }
+  .trust-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .trust-inner .mono { display: block; margin-bottom: 16px; }
+  .trust-inner h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(26px, 3vw, 34px);
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+  .trust-inner h3 em { font-style: italic; color: var(--accent); }
+  .trust-inner p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    letter-spacing: -0.012em;
+    font-weight: 300;
+  }
+
+  @media (max-width: 900px) {
+    .tool-grid { grid-template-columns: 1fr; gap: 20px; }
+    .tool-input { position: static; padding: 24px; }
+    .tool-tabs { margin: 32px 0 0; }
+    .tool-tab { padding: 16px 14px; }
+    .tool-tab .tab-title { font-size: 17px; }
+    .tool-tab .tab-sub { display: none; }
+    .tools-hero { padding: 48px 0 24px; }
+    .tool-panel { padding: 32px 0 80px; }
+    .result-card { padding: 24px; }
+    .result-card h2 { font-size: 24px; }
+    .score-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html">Check fit</a>
+      <a href="/tools.html" class="active">Ascent Lab</a>
+      <a href="/thinking.html">Thinking</a>
+      <a href="/work.html">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="tools-hero">
+    <div class="container">
+      <span class="mono fade d1">
+        <span class="pulse"></span>
+        <span>§ Ascent Lab · Powered by Claude · Tuned by the team</span>
+      </span>
+      <h1 class="fade d2">The <em>Lab</em>.<br>Free working tools.</h1>
+      <p class="fade d3">Paste a cold email or a subject line. Our AI — tuned on how we run outbound at Ascent — gives you a structured critique in seconds. First run is free. After that, we ask for an email so we can send the occasional note on what's moving. Nothing more.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="tool-tabs" role="tablist">
+      <button class="tool-tab active" role="tab" data-tool="teardown">
+        <span class="tab-mono">01 · Deep teardown</span>
+        <span class="tab-title">Email <em>teardown</em></span>
+        <span class="tab-sub">Paste your cold email or LinkedIn message. Get it critiqued and rewritten.</span>
+      </button>
+      <button class="tool-tab" role="tab" data-tool="grader">
+        <span class="tab-mono">02 · Quick grade</span>
+        <span class="tab-title">Subject line <em>grader</em></span>
+        <span class="tab-sub">Paste one subject line. Get it scored on four dimensions in 5 seconds.</span>
+      </button>
+    </div>
+
+    <!-- TOOL 1: TEARDOWN -->
+    <section class="tool-panel active" id="panel-teardown" role="tabpanel">
+      <div class="tool-grid">
+
+        <!-- INPUT -->
+        <div class="tool-input">
+          <div class="field-group">
+            <label class="field-label" for="td-channel">Channel <span class="req">*</span></label>
+            <select id="td-channel">
+              <option value="email">Cold email</option>
+              <option value="linkedin">LinkedIn DM / connection note</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="td-offer">What are you selling? <span class="req">*</span></label>
+            <input type="text" id="td-offer" placeholder="e.g. fractional CFO services for SaaS startups" maxlength="160" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="td-message">Your message <span class="req">*</span></label>
+            <textarea id="td-message" placeholder="Paste the cold email or LinkedIn message you're sending — including subject line if it's an email." maxlength="1800"></textarea>
+            <span class="char-count" id="td-count">0 / 1800</span>
+          </div>
+
+          <button class="run-btn" id="td-run">
+            <span class="spinner"></span>
+            <span class="btn-label-idle">Run the teardown →</span>
+            <span class="btn-label-loading">Tearing it down…</span>
+          </button>
+
+          <div class="tool-meta">
+            <span id="td-remaining">3 runs remaining today</span>
+            <span>~15 sec</span>
+          </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="tool-output" id="td-output">
+          <div class="empty">
+            <span class="mono">§ Result</span>
+            <h3>Paste a message — get a <em>real critique</em>.</h3>
+            <p>This isn't "try more personalization!" filler. The output reads your offer, reads your message, and tells you what's actually broken.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL 2: SUBJECT LINE GRADER -->
+    <section class="tool-panel" id="panel-grader" role="tabpanel">
+      <div class="tool-grid">
+
+        <!-- INPUT -->
+        <div class="tool-input">
+          <div class="field-group">
+            <label class="field-label" for="sl-offer">What are you selling? <span class="req">*</span></label>
+            <input type="text" id="sl-offer" placeholder="e.g. fractional CFO for SaaS startups" maxlength="160" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="sl-audience">Who is it for?</label>
+            <input type="text" id="sl-audience" placeholder="e.g. Series A SaaS founders" maxlength="160" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="sl-subject">Your subject line <span class="req">*</span></label>
+            <input type="text" id="sl-subject" placeholder="e.g. Quick question about your finance ops" maxlength="120" />
+            <span class="char-count" id="sl-count">0 / 120</span>
+          </div>
+
+          <button class="run-btn" id="sl-run">
+            <span class="spinner"></span>
+            <span class="btn-label-idle">Grade it →</span>
+            <span class="btn-label-loading">Grading…</span>
+          </button>
+
+          <div class="tool-meta">
+            <span id="sl-remaining">5 grades remaining today</span>
+            <span>~5 sec</span>
+          </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="tool-output" id="sl-output">
+          <div class="empty">
+            <span class="mono">§ Result</span>
+            <h3>Paste a subject line — get it <em>graded in 5 seconds</em>.</h3>
+            <p>Four dimensions: specificity, curiosity, deliverability risk, and fit for your buyer. Plus three alternatives you can actually use.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip">
+    <div class="trust-inner">
+      <span class="mono">§ Why this is free</span>
+      <h3>Because the best way to sell the service is to <em>prove we know the work</em>.</h3>
+      <p>Most outbound agencies hide behind case studies and jargon. Ascent Lab is where we show the work — small tools that do something useful, free, no signup for your first run. If the output is useful, great — use it, ship better outbound. If you want the full team running it for you, that's what the call is for.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // =========================================================================
+  // NAV + TABS
+  // =========================================================================
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  document.querySelectorAll('.tool-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tool).classList.add('active');
+    });
+  });
+
+  // =========================================================================
+  // CHARACTER COUNTERS
+  // =========================================================================
+  function wireCharCount(inputId, countId, max) {
+    const input = document.getElementById(inputId);
+    const count = document.getElementById(countId);
+    input.addEventListener('input', () => {
+      const n = input.value.length;
+      count.textContent = `${n} / ${max}`;
+      count.classList.toggle('over', n > max);
+    });
+  }
+  wireCharCount('td-message', 'td-count', 1800);
+  wireCharCount('sl-subject', 'sl-count', 120);
+
+  // =========================================================================
+  // EMAIL GATE — first run free, email required from run 2 onwards
+  // =========================================================================
+  function getSavedEmail() {
+    return localStorage.getItem('ascent_tool_user_email') || null;
+  }
+  function saveEmail(email) {
+    localStorage.setItem('ascent_tool_user_email', email);
+    localStorage.setItem('ascent_tool_user_email_at', new Date().toISOString());
+  }
+
+  // Total runs across BOTH tools, lifetime — used for gating
+  function getTotalRuns() {
+    return parseInt(localStorage.getItem('ascent_tool_total_runs') || '0', 10);
+  }
+  function incrementTotalRuns() {
+    const n = getTotalRuns() + 1;
+    localStorage.setItem('ascent_tool_total_runs', n);
+    return n;
+  }
+
+  // Does this user need to provide email before running?
+  function needsEmailGate() {
+    return getTotalRuns() >= 1 && !getSavedEmail();
+  }
+
+  // =========================================================================
+  // RATE LIMITING — per-day per-browser
+  // =========================================================================
+  const LIMITS = { teardown: 3, grader: 5 };
+
+  function getUsage(tool) {
+    const today = new Date().toISOString().split('T')[0];
+    const key = `ascent_tool_usage_${tool}_${today}`;
+    return parseInt(localStorage.getItem(key) || '0', 10);
+  }
+  function incrementUsage(tool) {
+    const today = new Date().toISOString().split('T')[0];
+    const key = `ascent_tool_usage_${tool}_${today}`;
+    const n = getUsage(tool) + 1;
+    localStorage.setItem(key, n);
+    incrementTotalRuns();
+    updateRemaining();
+    return n;
+  }
+  function updateRemaining() {
+    const tdLeft = Math.max(0, LIMITS.teardown - getUsage('teardown'));
+    const slLeft = Math.max(0, LIMITS.grader - getUsage('grader'));
+    const email = getSavedEmail();
+    const emailBadge = email ? ` · ${email}` : '';
+    document.getElementById('td-remaining').textContent =
+      tdLeft === 0 ? 'Limit reached — resets tomorrow' : `${tdLeft} run${tdLeft === 1 ? '' : 's'} remaining today${emailBadge}`;
+    document.getElementById('sl-remaining').textContent =
+      slLeft === 0 ? 'Limit reached — resets tomorrow' : `${slLeft} grade${slLeft === 1 ? '' : 's'} remaining today${emailBadge}`;
+  }
+  updateRemaining();
+
+  // =========================================================================
+  // EMAIL GATE MODAL — shown when user hits their 2nd run without email saved
+  // =========================================================================
+  function showEmailGate(toolName, onContinue) {
+    // Build modal if not already present
+    let modal = document.getElementById('email-gate');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'email-gate';
+      modal.className = 'email-gate';
+      modal.innerHTML = `
+        <div class="gate-backdrop" onclick="closeEmailGate()"></div>
+        <div class="gate-modal">
+          <span class="gate-mono">§ One small ask</span>
+          <h3>Drop your <em>email</em> to keep going.</h3>
+          <p id="gate-copy">Nice work on the first run. For the next one, we ask for an email — so we can send you the occasional note on what's actually moving outbound right now. No spam, unsubscribe whenever.</p>
+          <form id="gate-form" onsubmit="return submitEmailGate(event)">
+            <div class="gate-field">
+              <input type="email" id="gate-email" placeholder="you@company.com" required autofocus />
+              <button type="submit" class="gate-btn">Continue →</button>
+            </div>
+            <span class="gate-note">Your email goes to jamil@getascent.co. Nothing automated. No drip.</span>
+          </form>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+    // Store the continue callback on the modal element
+    modal._onContinue = onContinue;
+    modal._toolName = toolName;
+    // Customize copy slightly per tool
+    const copyEl = modal.querySelector('#gate-copy');
+    if (copyEl) {
+      copyEl.textContent = `Nice work on the first ${toolName}. Drop an email and you can keep running — we'll also send the occasional note on what's actually moving outbound right now. No spam, no drip, unsubscribe whenever.`;
+    }
+    // Show
+    requestAnimationFrame(() => modal.classList.add('shown'));
+    setTimeout(() => {
+      const input = document.getElementById('gate-email');
+      if (input) input.focus();
+    }, 100);
+  }
+
+  function closeEmailGate() {
+    const modal = document.getElementById('email-gate');
+    if (modal) modal.classList.remove('shown');
+  }
+
+  function submitEmailGate(e) {
+    e.preventDefault();
+    const input = document.getElementById('gate-email');
+    const email = input.value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      input.style.borderColor = 'var(--accent)';
+      input.focus();
+      setTimeout(() => { input.style.borderColor = ''; }, 2000);
+      return false;
+    }
+    saveEmail(email);
+    updateRemaining();
+
+    // Fire a mailto so Jamil gets notified of the new tool user
+    const subject = `Tool user signup — ${email}`;
+    const body = `New email captured from Ascent Lab.\n\nEmail: ${email}\nCaptured at: ${new Date().toISOString()}\nFirst tool used: ${document.getElementById('email-gate')._toolName || 'unknown'}\n\nThey've been given access to continue using the tools. Consider a personal follow-up in a few days.\n\n— Sent from getascent.co/tools.html`;
+    const mailto = `mailto:jamil@getascent.co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const ghostLink = document.createElement('a');
+    ghostLink.href = mailto;
+    ghostLink.style.display = 'none';
+    document.body.appendChild(ghostLink);
+    ghostLink.click();
+    document.body.removeChild(ghostLink);
+
+    // Log locally
+    try {
+      const signups = JSON.parse(localStorage.getItem('ascent_tool_signups') || '[]');
+      signups.push({ email, at: new Date().toISOString() });
+      localStorage.setItem('ascent_tool_signups', JSON.stringify(signups));
+    } catch(_) {}
+
+    // Close modal and fire the continue callback
+    const modal = document.getElementById('email-gate');
+    const onContinue = modal?._onContinue;
+    closeEmailGate();
+    setTimeout(() => {
+      if (typeof onContinue === 'function') onContinue();
+    }, 200);
+
+    return false;
+  }
+
+  // =========================================================================
+  // CLAUDE API — calls the Messages endpoint
+  // In production, this should be moved behind a serverless proxy to protect
+  // the API key. See DEPLOYMENT-NOTES.md for the drop-in Cloudflare Worker.
+  // =========================================================================
+
+  // TODO: Replace this with your actual Claude API key at deploy time.
+  // Or (recommended) replace the entire callClaude() function with a call
+  // to your serverless proxy that holds the key server-side.
+  const ANTHROPIC_API_KEY = 'REPLACE_WITH_YOUR_KEY';
+  const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
+
+  async function callClaude({ model, system, userPrompt, maxTokens = 1200 }) {
+    const res = await fetch(ANTHROPIC_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: maxTokens,
+        system,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`API error (${res.status}): ${errText}`);
+    }
+    const data = await res.json();
+    return data.content?.[0]?.text || '';
+  }
+
+  // =========================================================================
+  // TOOL 1: TEARDOWN
+  // =========================================================================
+  const TEARDOWN_SYSTEM = `You are a senior B2B outbound operator at Ascent. You run outbound for scaling B2B companies — founders, agencies, consultants, SaaS teams. Your voice: direct, opinionated, a little arrogant, operator-to-operator. Short sentences. No jargon. No corporate-speak. No "game-changer" or "leverage" or "synergy." You are not polite — you are useful.
+
+You are reviewing a cold outreach message that someone is sending. Your job is to diagnose what's broken and rewrite it.
+
+Return a JSON object with this exact structure (no preamble, no markdown fences, just the JSON):
+
+{
+  "verdict": "One-sentence honest verdict. Be direct. Examples: 'This reads like a brochure, not a message.' / 'Decent opener, weak ask.' / 'Nothing wrong except it could be any SaaS company.'",
+  "scores": {
+    "specificity": { "score": 0-10, "note": "one short sentence" },
+    "credibility": { "score": 0-10, "note": "one short sentence" },
+    "ask": { "score": 0-10, "note": "one short sentence" },
+    "deliverability": { "score": 0-10, "note": "one short sentence on spam-trigger words, length, formatting risks" }
+  },
+  "whats_broken": ["specific issue", "specific issue", "specific issue"],
+  "whats_working": ["keep this", "keep this"],
+  "rewrite": "A rewritten version of the message. Same goal, same channel, but tightened to how Ascent would send it. For LinkedIn: under 300 characters. For email: full email with subject line on first line labeled 'Subject: '. Plain text. No signatures.",
+  "one_thing": "If they only fix one thing, it's this. One sentence."
+}
+
+Scoring rules:
+- 8-10 = genuinely strong
+- 5-7 = average, will get some replies
+- 0-4 = broken, will get crickets or unsubscribes
+Be honest. Do not inflate scores. Most cold emails score 4-6 on most dimensions. That's the reality.`;
+
+  function buildTeardownPrompt({ channel, offer, message }) {
+    return `CHANNEL: ${channel === 'linkedin' ? 'LinkedIn DM / connection note' : 'Cold email'}
+WHAT THEY ARE SELLING: ${offer}
+
+THEIR MESSAGE:
+"""
+${message}
+"""
+
+Critique it. Return only the JSON.`;
+  }
+
+  document.getElementById('td-run').addEventListener('click', () => runTeardown());
+
+  async function runTeardown() {
+    const channel = document.getElementById('td-channel').value;
+    const offer = document.getElementById('td-offer').value.trim();
+    const message = document.getElementById('td-message').value.trim();
+
+    // Validate
+    if (!offer || offer.length < 8) {
+      flash('td-offer'); return;
+    }
+    if (!message || message.length < 30) {
+      flash('td-message'); return;
+    }
+    if (message.length > 1800) {
+      flash('td-message'); return;
+    }
+    if (getUsage('teardown') >= LIMITS.teardown) {
+      renderError('td-output', 'Daily limit reached', 'You\'ve used all 3 teardowns for today. It resets at midnight. Or if you can\'t wait, just email it to jamil@getascent.co and a human will reply within 24 hours.');
+      return;
+    }
+
+    // EMAIL GATE — first run free, then require email
+    if (needsEmailGate()) {
+      showEmailGate('teardown', () => runTeardown());
+      return;
+    }
+
+    const btn = document.getElementById('td-run');
+    const output = document.getElementById('td-output');
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    output.innerHTML = `
+      <div class="loading">
+        <div class="loading-label">
+          <span>Reading the message</span>
+          <span class="dot-flash"><span></span><span></span><span></span></span>
+        </div>
+        <div class="loading-lines">
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+        </div>
+      </div>
+    `;
+
+    try {
+      const raw = await callClaude({
+        model: 'claude-opus-4-7',
+        system: TEARDOWN_SYSTEM,
+        userPrompt: buildTeardownPrompt({ channel, offer, message }),
+        maxTokens: 1800
+      });
+
+      const result = extractJSON(raw);
+      if (!result) throw new Error('Response parse failed');
+
+      incrementUsage('teardown');
+      renderTeardown(output, result, { channel, offer, message });
+
+      // Log the lead
+      try {
+        const leads = JSON.parse(localStorage.getItem('ascent_teardown_leads') || '[]');
+        leads.push({ channel, offer, message_preview: message.slice(0, 100), result, email: getSavedEmail(), at: new Date().toISOString() });
+        localStorage.setItem('ascent_teardown_leads', JSON.stringify(leads));
+      } catch(_) {}
+    } catch (err) {
+      console.error(err);
+      renderError('td-output', 'Something went wrong', 'The teardown service is down momentarily. Email your message to jamil@getascent.co and you\'ll get a human teardown back within 24 hours. That\'s how it normally works anyway.');
+    } finally {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
+  }
+
+  function renderTeardown(output, r, ctx) {
+    const scores = r.scores || {};
+    const scoreCells = [
+      ['Specificity', scores.specificity],
+      ['Credibility', scores.credibility],
+      ['The ask', scores.ask],
+      ['Deliverability', scores.deliverability]
+    ].map(([name, s]) => {
+      const score = s?.score ?? 0;
+      const note = s?.note ?? '';
+      const level = score >= 7 ? 'great' : score >= 4 ? 'average' : 'poor';
+      return `
+        <div class="score-cell" data-level="${level}">
+          <span class="score-name">${name}</span>
+          <div class="score-val">${score}<span class="slash">/10</span></div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: ${score * 10}%"></div></div>
+          <div class="score-note">${escapeHtml(note)}</div>
+        </div>
+      `;
+    }).join('');
+
+    const broken = (r.whats_broken || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
+    const working = (r.whats_working || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
+
+    output.innerHTML = `
+      <div class="result-card">
+        <span class="result-label">§ Teardown</span>
+        <h2>${escapeHtml(r.verdict || 'Here\'s the read.')}</h2>
+
+        <div class="score-grid">${scoreCells}</div>
+
+        <div class="result-body">
+          ${broken ? `<h3>What's <em>broken</em></h3><ul>${broken}</ul>` : ''}
+          ${working ? `<h3>What's <em>worth keeping</em></h3><ul>${working}</ul>` : ''}
+
+          ${r.rewrite ? `
+            <h3>How <em>we'd rewrite it</em></h3>
+            <div class="rewrite-block">
+              <span class="rewrite-label">/ ASCENT REWRITE /</span>${escapeHtml(r.rewrite)}
+            </div>
+          ` : ''}
+
+          ${r.one_thing ? `
+            <h3>If you fix <em>one thing</em></h3>
+            <p>${escapeHtml(r.one_thing)}</p>
+          ` : ''}
+        </div>
+
+        <div class="post-capture" id="td-capture">
+          <span class="mono">§ Want a human second opinion?</span>
+          <h4>Get a <em>written teardown</em> from Jamil directly.</h4>
+          <p>Drop your email and we'll send a deeper, human-written review within 24 hours — plus any questions to sharpen the ask.</p>
+          <div class="field">
+            <input type="email" id="td-capture-email" placeholder="you@company.com" />
+            <button onclick="captureEmail('td', ${JSON.stringify(ctx).replace(/"/g, '&quot;')})">Send it →</button>
+          </div>
+          <div class="done">✓ On its way. Expect a reply within 24 hours — usually faster.</div>
+        </div>
+
+        <div class="result-footer">
+          <button class="try-again" onclick="resetTool('td')">← Run another teardown</button>
+          <a href="/contact.html?source=tool-teardown" class="cta-book">Book a 30-min call →</a>
+        </div>
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // TOOL 2: SUBJECT LINE GRADER
+  // =========================================================================
+  const GRADER_SYSTEM = `You are a senior B2B outbound operator at Ascent. Your voice: direct, opinionated, operator-to-operator. Short sentences. No jargon. No corporate-speak.
+
+You are grading a cold email subject line. Return a JSON object (no preamble, no markdown fences):
+
+{
+  "verdict": "One blunt sentence. Examples: 'Generic — sounds like every other cold email.' / 'Specific and risky — could work or could look like spam.' / 'Actually good. Most won't be.'",
+  "scores": {
+    "specificity": { "score": 0-10, "note": "short explanation" },
+    "curiosity": { "score": 0-10, "note": "does it make someone want to open it, or is it telegraphing a sales pitch?" },
+    "deliverability": { "score": 0-10, "note": "spam-filter risk. All caps, exclamation, salesy words, etc." },
+    "fit": { "score": 0-10, "note": "does it sound like something this audience actually opens?" }
+  },
+  "alternatives": ["3 alternative subject lines, tightened and different angles. Each under 60 chars.", "second option", "third option"],
+  "one_thing": "The single most important thing to fix. One sentence."
+}
+
+Be honest. Average subject lines score 4-5. Don't inflate.`;
+
+  function buildGraderPrompt({ offer, audience, subject }) {
+    return `WHAT THEY ARE SELLING: ${offer}
+${audience ? `AUDIENCE: ${audience}\n` : ''}SUBJECT LINE: "${subject}"
+
+Grade it. Return only the JSON.`;
+  }
+
+  document.getElementById('sl-run').addEventListener('click', () => runGrader());
+
+  async function runGrader() {
+    const offer = document.getElementById('sl-offer').value.trim();
+    const audience = document.getElementById('sl-audience').value.trim();
+    const subject = document.getElementById('sl-subject').value.trim();
+
+    if (!offer || offer.length < 8) { flash('sl-offer'); return; }
+    if (!subject || subject.length < 3) { flash('sl-subject'); return; }
+    if (getUsage('grader') >= LIMITS.grader) {
+      renderError('sl-output', 'Daily limit reached', 'You\'ve used all 5 grades for today. It resets at midnight.');
+      return;
+    }
+
+    // EMAIL GATE — first run free, then require email
+    if (needsEmailGate()) {
+      showEmailGate('grade', () => runGrader());
+      return;
+    }
+
+    const btn = document.getElementById('sl-run');
+    const output = document.getElementById('sl-output');
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    output.innerHTML = `
+      <div class="loading">
+        <div class="loading-label">
+          <span>Grading</span>
+          <span class="dot-flash"><span></span><span></span><span></span></span>
+        </div>
+        <div class="loading-lines">
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+          <div class="loading-line"></div>
+        </div>
+      </div>
+    `;
+
+    try {
+      const raw = await callClaude({
+        model: 'claude-haiku-4-5-20251001',
+        system: GRADER_SYSTEM,
+        userPrompt: buildGraderPrompt({ offer, audience, subject }),
+        maxTokens: 800
+      });
+
+      const result = extractJSON(raw);
+      if (!result) throw new Error('Response parse failed');
+
+      incrementUsage('grader');
+      renderGrader(output, result, { offer, audience, subject });
+
+      // Log
+      try {
+        const leads = JSON.parse(localStorage.getItem('ascent_grader_leads') || '[]');
+        leads.push({ offer, audience, subject, result, email: getSavedEmail(), at: new Date().toISOString() });
+        localStorage.setItem('ascent_grader_leads', JSON.stringify(leads));
+      } catch(_) {}
+    } catch (err) {
+      console.error(err);
+      renderError('sl-output', 'Grading service down', 'Try again in a minute, or email your subject line to jamil@getascent.co and we\'ll send a human grade back.');
+    } finally {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
+  }
+
+  function renderGrader(output, r, ctx) {
+    const scores = r.scores || {};
+    const scoreCells = [
+      ['Specificity', scores.specificity],
+      ['Curiosity', scores.curiosity],
+      ['Deliverability', scores.deliverability],
+      ['Audience fit', scores.fit]
+    ].map(([name, s]) => {
+      const score = s?.score ?? 0;
+      const note = s?.note ?? '';
+      const level = score >= 7 ? 'great' : score >= 4 ? 'average' : 'poor';
+      return `
+        <div class="score-cell" data-level="${level}">
+          <span class="score-name">${name}</span>
+          <div class="score-val">${score}<span class="slash">/10</span></div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: ${score * 10}%"></div></div>
+          <div class="score-note">${escapeHtml(note)}</div>
+        </div>
+      `;
+    }).join('');
+
+    const alts = (r.alternatives || []).map(a => `<li>${escapeHtml(a)}</li>`).join('');
+
+    output.innerHTML = `
+      <div class="result-card">
+        <span class="result-label">§ Graded</span>
+        <h2>${escapeHtml(r.verdict || 'Here\'s the read.')}</h2>
+
+        <p class="verdict-line"><strong style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-mute);letter-spacing:0.06em;text-transform:uppercase;">You sent:</strong> "${escapeHtml(ctx.subject)}"</p>
+
+        <div class="score-grid">${scoreCells}</div>
+
+        <div class="result-body">
+          ${alts ? `<h3>Three <em>alternatives</em></h3><ul>${alts}</ul>` : ''}
+          ${r.one_thing ? `<h3>Fix <em>this first</em></h3><p>${escapeHtml(r.one_thing)}</p>` : ''}
+        </div>
+
+        <div class="post-capture" id="sl-capture">
+          <span class="mono">§ Running more subject lines?</span>
+          <h4>Get the <em>full outbound teardown</em> from Jamil.</h4>
+          <p>Drop your email and we'll send a written review of your full sequence — subject line, opener, body, ask. No call required.</p>
+          <div class="field">
+            <input type="email" id="sl-capture-email" placeholder="you@company.com" />
+            <button onclick="captureEmail('sl', ${JSON.stringify(ctx).replace(/"/g, '&quot;')})">Send it →</button>
+          </div>
+          <div class="done">✓ On its way. Expect a reply within 24 hours.</div>
+        </div>
+
+        <div class="result-footer">
+          <button class="try-again" onclick="resetTool('sl')">← Grade another</button>
+          <a href="/contact.html?source=tool-grader" class="cta-book">Book a 30-min call →</a>
+        </div>
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // HELPERS
+  // =========================================================================
+  function extractJSON(text) {
+    // Claude sometimes wraps in ```json ... ``` even when told not to. Strip it.
+    let clean = text.trim();
+    clean = clean.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
+    // Find first { and last } just in case
+    const first = clean.indexOf('{');
+    const last = clean.lastIndexOf('}');
+    if (first === -1 || last === -1) return null;
+    try {
+      return JSON.parse(clean.slice(first, last + 1));
+    } catch (e) {
+      console.error('JSON parse failed', e, text);
+      return null;
+    }
+  }
+
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function flash(inputId) {
+    const el = document.getElementById(inputId);
+    el.style.borderColor = 'var(--accent)';
+    el.focus();
+    setTimeout(() => { el.style.borderColor = ''; }, 2000);
+  }
+
+  function renderError(outputId, title, body) {
+    document.getElementById(outputId).innerHTML = `
+      <div class="error">
+        <span class="mono">§ Error</span>
+        <h3>${escapeHtml(title)}</h3>
+        <p>${escapeHtml(body)}</p>
+      </div>
+    `;
+  }
+
+  function resetTool(prefix) {
+    const output = document.getElementById(`${prefix}-output`);
+    output.innerHTML = document.querySelector(`#panel-${prefix === 'td' ? 'teardown' : 'grader'} .empty`)?.outerHTML
+      || '<div class="empty"><span class="mono">§ Result</span><h3>Ready for another.</h3></div>';
+    // Re-render the empty state
+    if (prefix === 'td') {
+      output.innerHTML = `
+        <div class="empty">
+          <span class="mono">§ Result</span>
+          <h3>Paste a message — get a <em>real critique</em>.</h3>
+          <p>This isn't "try more personalization!" filler. The output reads your offer, reads your message, and tells you what's actually broken.</p>
+        </div>
+      `;
+    } else {
+      output.innerHTML = `
+        <div class="empty">
+          <span class="mono">§ Result</span>
+          <h3>Paste a subject line — get it <em>graded in 5 seconds</em>.</h3>
+          <p>Four dimensions: specificity, curiosity, deliverability risk, and fit for your buyer. Plus three alternatives you can actually use.</p>
+        </div>
+      `;
+    }
+  }
+
+  function captureEmail(prefix, ctx) {
+    const emailEl = document.getElementById(`${prefix}-capture-email`);
+    const email = emailEl.value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      emailEl.style.borderColor = 'var(--accent)';
+      emailEl.focus();
+      setTimeout(() => { emailEl.style.borderColor = ''; }, 2000);
+      return;
+    }
+
+    const capture = document.getElementById(`${prefix}-capture`);
+    const toolName = prefix === 'td' ? 'Email teardown' : 'Subject line grader';
+
+    // Fire a mailto to Jamil with full context
+    const subject = `Tool lead — ${toolName} — ${email}`;
+    let body = `New lead from the ${toolName} tool.\n\nEmail: ${email}\n\n`;
+    if (ctx.offer)    body += `Selling: ${ctx.offer}\n`;
+    if (ctx.audience) body += `Audience: ${ctx.audience}\n`;
+    if (ctx.channel)  body += `Channel: ${ctx.channel}\n`;
+    if (ctx.subject)  body += `\nSubject line they tried:\n"${ctx.subject}"\n`;
+    if (ctx.message)  body += `\nMessage they ran:\n"""\n${ctx.message}\n"""\n`;
+    body += `\n— Sent from getascent.co/tools.html`;
+
+    const mailto = `mailto:jamil@getascent.co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const ghostLink = document.createElement('a');
+    ghostLink.href = mailto;
+    ghostLink.style.display = 'none';
+    document.body.appendChild(ghostLink);
+    ghostLink.click();
+    document.body.removeChild(ghostLink);
+
+    // Log locally
+    try {
+      const leads = JSON.parse(localStorage.getItem('ascent_tool_leads') || '[]');
+      leads.push({ tool: toolName, email, ctx, at: new Date().toISOString() });
+      localStorage.setItem('ascent_tool_leads', JSON.stringify(leads));
+    } catch(_) {}
+
+    capture.classList.add('done');
+  }
+</script>
+
+<script src="/shared.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ascent — Outbound, owned.</title>
+<meta name="description" content="Ascent runs the whole outbound function for scaling B2B companies. One partner owns the pipeline end to end. No tiers. No templates. No deck on the first call." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ascent — Outbound, owned." />
+<meta property="og:description" content="Outbound run by one partner, end to end. For scaling B2B companies." />
+<meta property="og:url" content="https://getascent.co" />
+<meta property="og:site_name" content="Ascent" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ascent — Outbound, owned." />
+<meta name="twitter:description" content="Outbound run by one partner, end to end." />
+
+<link rel="canonical" href="https://getascent.co" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ascent",
+  "url": "https://getascent.co",
+  "email": "jamil@getascent.co",
+  "description": "Ascent is an outbound growth partner. We run outbound as a commercial function for scaling B2B companies — from target definition through qualified pipeline — as a single point of accountability.",
+  "slogan": "Outbound, owned.",
+  "areaServed": "Worldwide",
+  "founder": { "@type": "Person", "name": "Jamil Ahmed" },
+  "knowsAbout": ["Outbound sales", "LinkedIn outreach", "Cold email", "B2B pipeline generation", "Sales development"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Outbound growth partnership",
+  "provider": { "@type": "Organization", "name": "Ascent", "url": "https://getascent.co" },
+  "description": "A done-for-you outbound function covering target research, messaging, LinkedIn and email execution, reply handling, and qualification. Operated as a monthly retainer.",
+  "audience": { "@type": "Audience", "audienceType": "Scaling B2B companies" },
+  "areaServed": "Worldwide"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What does Ascent do?", "acceptedAnswer": { "@type": "Answer", "text": "We run outbound as a commercial function. Target research, messaging, LinkedIn and email outreach, reply handling, qualification. One partner. End to end." } },
+    { "@type": "Question", "name": "Who is it for?", "acceptedAnswer": { "@type": "Answer", "text": "Scaling B2B companies with a proven offer. Founders, agencies, consultants, and SaaS teams with contract values that justify a senior operator running outbound." } },
+    { "@type": "Question", "name": "How is this different from an agency?", "acceptedAnswer": { "@type": "Answer", "text": "Agencies split the work across roles and tools. We do not. One operator is accountable for the pipeline. You are not a line item on a dashboard." } },
+    { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "Scoped after the first call. Monthly retainer, 90-day minimum. If you need a price list to compare, this is not the right service." } },
+    { "@type": "Question", "name": "Do you use AI to write the messages?", "acceptedAnswer": { "@type": "Answer", "text": "No. AI helps with research and priorities. The words a prospect reads are written by a human for a real buyer." } },
+    { "@type": "Question", "name": "When do conversations start?", "acceptedAnswer": { "@type": "Answer", "text": "Weeks two to four. Anyone promising booked calls in week one is measuring how easy the target was, not the pipeline." } }
+  ]
+}
+</script>
+
+<style>
+  /* PAGE-SPECIFIC: index */
+
+  /* HERO */
+  /* HERO — framed editorial composition */
+  .hero {
+    padding: 28px 0 40px;
+    position: relative;
+    border-bottom: 1px solid var(--ink-line);
+    overflow: hidden;
+  }
+
+  /* Top + bottom rails bracket the hero body */
+  .hero-rail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    white-space: nowrap;
+  }
+  .hero-rail-top { border-bottom: 1px solid var(--ink-line); }
+  .hero-rail-bottom { border-top: 1px solid var(--ink-line); margin-top: 40px; }
+  .rail-col {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .rail-col-mid { color: var(--ink); }
+  .rail-col-end { justify-content: flex-end; }
+  .rail-col .mono {
+    font-size: inherit;
+    letter-spacing: inherit;
+    white-space: nowrap;
+  }
+  .status-pulse {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(217, 67, 42, 0.25); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 5px transparent; }
+  }
+
+  /* Hero body — two-column */
+  .hero-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(360px, 1fr);
+    gap: 80px;
+    align-items: start;
+    padding: 80px 0 56px;
+  }
+
+  .hero-headline { min-width: 0; }
+  .hero-headline h1 {
+    font-size: clamp(72px, 9.5vw, 148px);
+    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: -0.048em;
+    margin: 0;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+  .hero-headline h1 .comma,
+  .hero-headline h1 .period { color: var(--accent); }
+
+  .hero-aside {
+    min-width: 0;
+    padding-bottom: 12px;
+  }
+
+  .hero-sub {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(19px, 1.5vw, 22px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-weight: 300;
+    margin-bottom: 32px;
+    letter-spacing: -0.012em;
+  }
+  .hero-sub em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* OPERATING SPEC — 4-column metric strip below hero */
+  .op-spec {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--ink-line);
+    background: var(--bg);
+  }
+  .op-spec-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+  .op-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .op-item .mono { margin-bottom: 10px; }
+  .op-item .val {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .op-item .sub {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  /* PROOF */
+  .proof {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .proof-inner {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .proof .mono {
+    padding-top: 6px;
+    white-space: nowrap;
+  }
+  .proof-logos {
+    display: flex;
+    gap: 40px 56px;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 16px;
+  }
+  .proof-logo {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    color: var(--ink-mute);
+    letter-spacing: -0.02em;
+    font-style: italic;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .proof-logo:hover { color: var(--ink); }
+
+  /* SECTIONS */
+  section { padding: 140px 0; border-bottom: 1px solid var(--ink-line); }
+
+  .section-label {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 56px;
+    margin-bottom: 80px;
+    align-items: start;
+  }
+  .section-label h2 {
+    font-size: clamp(36px, 5vw, 64px);
+    max-width: 840px;
+  }
+  .section-label h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .section-label .mono { padding-top: 8px; }
+
+  /* THESIS */
+  .thesis {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--ink-line);
+    background: var(--bg);
+  }
+  .thesis-inner { max-width: 960px; margin: 0 auto; }
+  .thesis .mono { margin-bottom: 40px; display: block; }
+  .thesis p {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(28px, 3.6vw, 46px);
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: -0.028em;
+    font-weight: 400;
+  }
+  .thesis p em { font-style: italic; color: var(--accent); }
+  .thesis .footnote {
+    margin-top: 56px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+  .thesis .read-more {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    transition: gap 0.2s;
+  }
+  .thesis .read-more:hover { gap: 12px; }
+
+  /* LED BY JAMIL — credibility block */
+  .led-by {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--ink-line);
+    background: var(--bg-raised);
+  }
+  .led-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 80px;
+    align-items: start;
+  }
+  .led-left .mono {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .led-left h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(56px, 7vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    margin-bottom: 32px;
+    color: var(--ink);
+  }
+  .led-left h2 .period { color: var(--accent); }
+  .led-sub {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(18px, 1.4vw, 21px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-weight: 300;
+    letter-spacing: -0.012em;
+    max-width: 520px;
+  }
+  .led-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 40px;
+    padding-top: 16px;
+  }
+  .led-item { display: flex; flex-direction: column; gap: 4px; }
+  .led-item .mono {
+    margin-bottom: 8px;
+    color: var(--ink-mute);
+  }
+  .led-item .val {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .led-item .sub {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    letter-spacing: -0.01em;
+    margin-top: 2px;
+  }
+
+  /* SPEC */
+  .spec {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+  }
+  .spec-row { display: contents; }
+  .spec-row > * { padding: 28px 0; border-bottom: 1px solid var(--ink-line); }
+  .spec-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    padding-right: 32px;
+    padding-top: 32px;
+  }
+  .spec-val {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--ink);
+    letter-spacing: -0.018em;
+    font-weight: 400;
+  }
+  .spec-val em {
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 16px;
+    display: block;
+    margin-top: 6px;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+  }
+
+  /* PROCESS */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+  }
+  .process-step {
+    padding: 40px 24px 72px 0;
+    border-right: 1px solid var(--ink-line);
+    position: relative;
+  }
+  .process-step:nth-child(n+2) { padding-left: 24px; }
+  .process-step:last-child { border-right: none; }
+  .process-step .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    margin-bottom: 56px;
+    display: block;
+  }
+  .process-step .num .arrow { color: var(--accent); margin-right: 6px; }
+  .process-step h3 {
+    font-size: 19px;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+  }
+  .process-step p {
+    font-size: 13.5px;
+    color: var(--ink-mute);
+    line-height: 1.55;
+  }
+  .process-step .time {
+    position: absolute;
+    bottom: 32px;
+    left: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .process-step:first-child .time { left: 0; }
+
+  /* CHANGES */
+  .changes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+  }
+  .change {
+    padding: 56px 48px 56px 0;
+    border-bottom: 1px solid var(--ink-line);
+    border-right: 1px solid var(--ink-line);
+  }
+  .change:nth-child(2n) { border-right: none; padding-right: 0; padding-left: 48px; }
+  .change:nth-child(n+3) { border-bottom: none; }
+  .change .n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+    display: block;
+  }
+  .change h3 {
+    font-size: 26px;
+    margin-bottom: 16px;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    max-width: 420px;
+  }
+  .change p {
+    font-size: 15px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+    max-width: 440px;
+  }
+
+  /* COMMERCIAL */
+  .commercial-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: start;
+  }
+  .commercial-left h2 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    margin-bottom: 32px;
+  }
+  .commercial-left h2 em { font-style: italic; color: var(--accent); }
+  .commercial-left p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 19px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 20px;
+    letter-spacing: -0.015em;
+    font-weight: 300;
+  }
+  .commercial-spec { border-top: 1px solid var(--ink); }
+  .commercial-spec .row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--ink-line);
+    gap: 24px;
+    align-items: baseline;
+  }
+  .commercial-spec dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .commercial-spec dd {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+  .commercial-spec dd em { font-style: italic; color: var(--ink-mute); font-size: 14px; font-family: inherit; }
+
+  /* FAQ */
+  .faq-list { border-top: 1px solid var(--ink); }
+  details.faq {
+    border-bottom: 1px solid var(--ink-line);
+    padding: 32px 0;
+    cursor: pointer;
+  }
+  details.faq summary {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(22px, 2.4vw, 28px);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    color: var(--ink);
+    letter-spacing: -0.022em;
+    font-weight: 400;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+';
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    color: var(--ink-mute);
+    font-weight: 300;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  details.faq[open] summary::after { transform: rotate(45deg); color: var(--accent); }
+  details.faq .answer {
+    padding-top: 20px;
+    font-size: 16px;
+    color: var(--ink-mute);
+    max-width: 740px;
+    line-height: 1.65;
+  }
+  details.faq .answer em { font-family: 'Source Serif 4', serif; font-style: italic; color: var(--ink-soft); }
+
+  /* SECONDARY CAPTURE — field notes signup */
+  .capture {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--ink-line);
+    background: var(--bg-raised);
+  }
+  .capture-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .capture-left .mono { margin-bottom: 24px; display: block; }
+  .capture-left h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: 20px;
+    letter-spacing: -0.028em;
+  }
+  .capture-left h2 em { font-style: italic; color: var(--accent); }
+  .capture-left p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    max-width: 460px;
+    font-weight: 300;
+  }
+  .capture-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .capture-form .field {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+  .capture-form .field:focus-within { border-color: var(--ink); }
+  .capture-form input[type="email"] {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    outline: none;
+    letter-spacing: -0.005em;
+  }
+  .capture-form input[type="email"]::placeholder { color: var(--ink-mute); }
+  .capture-form button { border: none; cursor: pointer; }
+  .capture-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .capture-success {
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--success);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--success);
+    display: none;
+  }
+  .capture-success.shown { display: block; }
+
+  /* CTA FINAL */
+  .cta-final {
+    padding: 180px 0 160px;
+    border-bottom: 1px solid var(--ink-line);
+    background: var(--ink);
+    color: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final h2 {
+    font-size: clamp(64px, 10vw, 144px);
+    line-height: 0.95;
+    color: var(--bg);
+    margin-bottom: 48px;
+    max-width: 900px;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+  .cta-final h2 em { font-style: italic; color: var(--accent); }
+  .cta-final p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: rgba(245, 242, 234, 0.6);
+    max-width: 560px;
+    margin-bottom: 40px;
+    line-height: 1.35;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+  .cta-final .mono {
+    color: rgba(245, 242, 234, 0.4);
+    margin-bottom: 40px;
+    display: block;
+  }
+  .cta-final .ctas { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .cta-final .btn {
+    background: var(--bg);
+    color: var(--ink);
+    border-color: var(--bg);
+  }
+  .cta-final .btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .cta-final .btn-ghost-dark {
+    background: transparent;
+    color: var(--bg);
+    border-color: rgba(245, 242, 234, 0.2);
+  }
+  .cta-final .btn-ghost-dark:hover {
+    background: rgba(245, 242, 234, 0.08);
+    border-color: rgba(245, 242, 234, 0.4);
+  }
+
+  /* Mobile */
+  @media (max-width: 960px) {
+    .hero-body { grid-template-columns: 1fr; gap: 48px; align-items: start; padding: 64px 0 40px; }
+    .hero-headline h1 { font-size: clamp(72px, 14vw, 120px); }
+    .op-spec-grid { grid-template-columns: 1fr 1fr; gap: 32px 40px; }
+  }
+
+  @media (max-width: 860px) {
+    .hero { padding: 20px 0 24px; }
+    .hero-rail {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 12px 0;
+    }
+    .rail-col-end { justify-content: flex-start; }
+    .rail-col { flex-wrap: wrap; }
+    .hero-rail-bottom { margin-top: 24px; }
+    .hero-headline h1 { font-size: 72px; line-height: 0.95; }
+    .hero-sub { font-size: 18px; }
+    .op-spec { padding: 32px 0; }
+    .op-spec-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .led-by { padding: 72px 0; }
+    .led-inner { grid-template-columns: 1fr; gap: 48px; }
+    .led-left h2 { font-size: 48px; }
+    .led-right { grid-template-columns: 1fr; gap: 24px; padding-top: 0; }
+    section { padding: 80px 0; }
+    .section-label { grid-template-columns: 1fr; gap: 20px; margin-bottom: 48px; }
+    .spec { grid-template-columns: 1fr; border-top: 1px solid var(--ink-line); }
+    .spec-row > * { padding: 16px 0; }
+    .spec-key { padding-top: 20px; border-bottom: none; padding-bottom: 8px; }
+    .process { grid-template-columns: 1fr; }
+    .process-step { border-right: none; border-bottom: 1px solid var(--ink-line); padding: 32px 0; }
+    .process-step:last-child { border-bottom: none; }
+    .process-step .time { position: static; margin-top: 24px; display: block; }
+    .changes-grid { grid-template-columns: 1fr; }
+    .change { padding: 32px 0 !important; border-right: none !important; }
+    .commercial-inner { grid-template-columns: 1fr; gap: 48px; }
+    .proof-inner { grid-template-columns: 1fr; gap: 16px; }
+    .proof-logos { gap: 20px 28px; row-gap: 12px; }
+    .capture-inner { grid-template-columns: 1fr; gap: 40px; }
+    .cta-final { padding: 96px 0; }
+    .cta-final h2 { font-size: 56px; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+      <a href="/thinking.html">Thinking</a>
+      <a href="/work.html">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO — framed editorial composition with status bars top + bottom -->
+<header class="hero">
+  <div class="container">
+
+    <!-- Top status rail -->
+    <div class="hero-rail hero-rail-top">
+      <div class="rail-col">
+        <span class="mono">Partnerships open Q2 2026</span>
+      </div>
+      <div class="rail-col rail-col-mid">
+        <span class="mono">§ Outbound operated as a commercial function</span>
+      </div>
+      <div class="rail-col rail-col-end">
+        <span class="mono">v2026.04 / getascent.co</span>
+      </div>
+    </div>
+
+    <!-- Hero body: massive headline left, copy + CTAs right -->
+    <div class="hero-body">
+      <div class="hero-headline fade d1">
+        <h1>Outbound<span class="comma">,</span><br>owned<span class="period">.</span></h1>
+      </div>
+      <div class="hero-aside">
+        <p class="hero-sub fade d2">
+          The full outbound motion — targeting, messaging, LinkedIn, email, replies — run end to end by <em>a small team</em>, led by Jamil. Built for founders who want pipeline, not another vendor.
+        </p>
+        <div class="hero-ctas fade d3">
+          <a href="/contact.html" class="btn btn-lg">Book a 30-min call →</a>
+          <a href="/fit.html" class="btn btn-lg btn-ghost">Take the 2-min fit check</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom status rail -->
+    <div class="hero-rail hero-rail-bottom">
+      <div class="rail-col">
+        <span class="mono">§ 01 / Introduction</span>
+      </div>
+      <div class="rail-col rail-col-mid">
+        <span class="mono">The work · The thinking · The call</span>
+      </div>
+      <div class="rail-col rail-col-end">
+        <span class="mono">Scroll ↓</span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- OPERATING SPEC — the four meta tiles, now a proper strip -->
+<section class="op-spec" aria-label="Operating spec">
+  <div class="container op-spec-grid">
+    <div class="op-item">
+      <span class="mono">Structure</span>
+      <span class="val">Monthly retainer</span>
+      <span class="sub">90-day minimum</span>
+    </div>
+    <div class="op-item">
+      <span class="mono">Channels</span>
+      <span class="val">LinkedIn + email</span>
+      <span class="sub">Built for your buyer</span>
+    </div>
+    <div class="op-item">
+      <span class="mono">Onboarding</span>
+      <span class="val">Two weeks</span>
+      <span class="sub">To live outreach</span>
+    </div>
+    <div class="op-item">
+      <span class="mono">Roster</span>
+      <span class="val">Limited</span>
+      <span class="sub">Fit first, volume never</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof" aria-label="Partners" data-reveal>
+  <div class="container proof-inner">
+    <span class="mono">Worked with</span>
+    <div class="proof-logos">
+      <span class="proof-logo">360Partners</span>
+      <span class="proof-logo">SalesCoachPro</span>
+      <span class="proof-logo">Perpetual Group</span>
+      <span class="proof-logo">LaunchPoint Lab</span>
+      <span class="proof-logo">App Marketing Assassin</span>
+      <span class="proof-logo">GlassHouse.biz</span>
+      <span class="proof-logo">Appraisal Venture</span>
+      <span class="proof-logo">Hot Berry Consulting</span>
+      <span class="proof-logo">WebbyIT</span>
+      <span class="proof-logo">Northbay Capital</span>
+    </div>
+  </div>
+</section>
+
+<!-- LED BY JAMIL — credibility block -->
+<section class="led-by" data-reveal>
+  <div class="container led-inner">
+    <div class="led-left">
+      <span class="mono">§ Led by</span>
+      <h2>Jamil Ahmed<span class="period">.</span></h2>
+      <p class="led-sub">
+        A small operating team. We build and run outbound systems for founders and agencies who want pipeline without the overhead of hiring, training, and managing another SDR desk.
+      </p>
+    </div>
+    <div class="led-right">
+      <div class="led-item">
+        <span class="mono">Geography</span>
+        <span class="val">US · UK · UAE · AU</span>
+        <span class="sub">Clients across four continents.</span>
+      </div>
+      <div class="led-item">
+        <span class="mono">Operator model</span>
+        <span class="val">One partner per account</span>
+        <span class="sub">Not a pooled team, not a rotating junior.</span>
+      </div>
+      <div class="led-item">
+        <span class="mono">Working rhythm</span>
+        <span class="val">Weekly operating reviews</span>
+        <span class="sub">Every account. Every week. No exceptions.</span>
+      </div>
+      <div class="led-item">
+        <span class="mono">Roster</span>
+        <span class="val">Limited</span>
+        <span class="sub">Fit first. Volume never.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THESIS -->
+<section id="thesis" class="thesis" data-reveal>
+  <div class="container container-narrow thesis-inner">
+    <span class="mono">§ The thesis</span>
+    <p>
+      When outbound underperforms, the cause is rarely a tired channel or burnt-out copy. It is almost always <em>structural misalignment</em>. We design for structure first.
+    </p>
+    <p class="footnote">
+      Most teams treat outbound as a pile of tasks spread across people, tools, and time zones. No one person is accountable for the output. We operate the opposite way.
+    </p>
+    <a href="/thinking/structural-misalignment.html" class="read-more">Read the full thesis →</a>
+  </div>
+</section>
+
+<!-- OWNERSHIP -->
+<section id="ownership" data-reveal>
+  <div class="container">
+    <div class="section-label">
+      <span class="mono">§ 01 &nbsp; Ownership</span>
+      <h2>What we <em>own</em>, precisely.</h2>
+    </div>
+
+    <div class="spec">
+      <div class="spec-row">
+        <div class="spec-key">01 · Targeting</div>
+        <div class="spec-val">Right accounts, right people, right moment.<em>No persona templates. No copy-paste lookalikes.</em></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">02 · Messaging</div>
+        <div class="spec-val">Written for your offer, your market, and what your buyer actually cares about.<em>Tested against real objections. Not best-practice checklists.</em></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">03 · Execution</div>
+        <div class="spec-val">LinkedIn and email, run every single day with the care of someone who has to live with the results.<em>Your sending infrastructure protected like it matters. Because it does.</em></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">04 · Replies</div>
+        <div class="spec-val">Every reply handled. Every fit buyer moved forward.<em>Dead angles killed the week they die.</em></div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">05 · Reporting</div>
+        <div class="spec-val">Weekly, clear, decision-ready.<em>Numbers you can actually plan a quarter around.</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" data-reveal>
+  <div class="container">
+    <div class="section-label">
+      <span class="mono">§ 02 &nbsp; Process</span>
+      <h2>Five stages, <em>one system</em>.</h2>
+    </div>
+
+    <div class="process">
+      <article class="process-step">
+        <span class="num"><span class="arrow">→</span>01</span>
+        <h3>Targeting</h3>
+        <p>The accounts, the people, the moment. Defined by research, not inherited from a template.</p>
+        <span class="time">Week 1</span>
+      </article>
+      <article class="process-step">
+        <span class="num"><span class="arrow">→</span>02</span>
+        <h3>Messaging</h3>
+        <p>Written for your offer and your buyer. Stress-tested against real objections.</p>
+        <span class="time">Week 1—2</span>
+      </article>
+      <article class="process-step">
+        <span class="num"><span class="arrow">→</span>03</span>
+        <h3>Execution</h3>
+        <p>LinkedIn and email, every day. Careful volume. Protected deliverability.</p>
+        <span class="time">Week 2+</span>
+      </article>
+      <article class="process-step">
+        <span class="num"><span class="arrow">→</span>04</span>
+        <h3>Qualification</h3>
+        <p>Replies handled. Only fit conversations reach your calendar.</p>
+        <span class="time">Ongoing</span>
+      </article>
+      <article class="process-step">
+        <span class="num"><span class="arrow">→</span>05</span>
+        <h3>Pipeline</h3>
+        <p>A steady flow of real buyer conversations. Infrastructure, not campaigns.</p>
+        <span class="time">Ongoing</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CHANGES -->
+<section id="changes" data-reveal>
+  <div class="container">
+    <div class="section-label">
+      <span class="mono">§ 03 &nbsp; Outcome</span>
+      <h2>What <em>changes</em>.</h2>
+    </div>
+
+    <div class="changes-grid">
+      <div class="change">
+        <span class="n">01</span>
+        <h3>Outbound stops eating your team's time.</h3>
+        <p>No more context-switching between closing and prospecting. Pipeline generation moves off the founder's plate, for good.</p>
+      </div>
+      <div class="change">
+        <span class="n">02</span>
+        <h3>Only fit buyers reach your calendar.</h3>
+        <p>Conversations arrive pre-qualified against the criteria that matter — budget, role, timing. No top-of-funnel tourists.</p>
+      </div>
+      <div class="change">
+        <span class="n">03</span>
+        <h3>Pipeline becomes something you can plan around.</h3>
+        <p>Week-on-week reporting. Predictable volume. A function you can hire, invest, and forecast against.</p>
+      </div>
+      <div class="change">
+        <span class="n">04</span>
+        <h3>Growth stops feeling reactive.</h3>
+        <p>You review outputs instead of chasing inputs. Outbound stops feeling patchy and starts feeling like a system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMERCIAL -->
+<section id="commercial" data-reveal>
+  <div class="container">
+    <div class="commercial-inner">
+      <div class="commercial-left">
+        <span class="mono" style="display:block; margin-bottom: 32px;">§ 04 &nbsp; Commercial</span>
+        <h2>No tiers. No <em>packages</em>.</h2>
+        <p>Scope is defined during the first conversation and built around your buyer, offer, and sales motion.</p>
+        <p>If you need a pricing calculator to decide, you are looking for a different kind of partner.</p>
+      </div>
+
+      <dl class="commercial-spec">
+        <div class="row">
+          <dt>Structure</dt>
+          <dd>Monthly retainer</dd>
+        </div>
+        <div class="row">
+          <dt>Commitment</dt>
+          <dd>90 days <em>· minimum</em></dd>
+        </div>
+        <div class="row">
+          <dt>Channels</dt>
+          <dd>LinkedIn + email</dd>
+        </div>
+        <div class="row">
+          <dt>Reporting</dt>
+          <dd>Weekly · clear</dd>
+        </div>
+        <div class="row">
+          <dt>Onboarding</dt>
+          <dd>Two weeks to live</dd>
+        </div>
+        <div class="row">
+          <dt>First calls</dt>
+          <dd>Weeks 2—4 typical</dd>
+        </div>
+        <div class="row">
+          <dt>Roster</dt>
+          <dd>Limited <em>· by fit</em></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" data-reveal>
+  <div class="container">
+    <div class="section-label">
+      <span class="mono">§ 05 &nbsp; Questions</span>
+      <h2>Before the <em>call</em>.</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq">
+        <summary>What does Ascent actually do?</summary>
+        <div class="answer">Run outbound as a commercial function. Targeting, messaging, LinkedIn and email execution, qualification. One partner. End to end.</div>
+      </details>
+      <details class="faq">
+        <summary>Who is it for?</summary>
+        <div class="answer">Scaling B2B companies with a proven offer. Founders, agencies, consultants, and SaaS teams with contract values that justify a senior operator running the work. <em>If you are still figuring out what to sell, this is the wrong time for this service.</em></div>
+      </details>
+      <details class="faq">
+        <summary>How is this different from an agency?</summary>
+        <div class="answer">Agencies split the work across roles and tools. We do not. One operator is accountable for the pipeline. You are not a line item on a dashboard.</div>
+      </details>
+      <details class="faq">
+        <summary>How much does it cost?</summary>
+        <div class="answer">Scoped after the first call. Monthly retainer, 90-day minimum. <em>If you are looking for a price list to compare, this is the wrong service.</em></div>
+      </details>
+      <details class="faq">
+        <summary>Do you use AI to write the outreach?</summary>
+        <div class="answer">No. AI helps with research and priorities. The words a prospect reads are written by a human for a real buyer.</div>
+      </details>
+      <details class="faq">
+        <summary>When do conversations start?</summary>
+        <div class="answer">Weeks two to four. <em>Anyone promising booked calls in week one is measuring how easy the target was, not the health of the pipeline.</em></div>
+      </details>
+      <details class="faq">
+        <summary>Can I just buy the list or the copy?</summary>
+        <div class="answer">No. Ownership is the product. Selling you a piece of it defeats the point.</div>
+      </details>
+      <details class="faq">
+        <summary>Not sure if we're a fit?</summary>
+        <div class="answer"><a href="/fit.html" style="color: var(--accent);">Take the two-minute fit check →</a> You'll get a clear answer, a suggested next step, and no obligation.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- SECONDARY CAPTURE — Free outbound diagnostic (the lead magnet) -->
+<section class="capture" data-reveal>
+  <div class="container capture-inner">
+    <div class="capture-left">
+      <span class="mono">§ Free diagnostic</span>
+      <h2>Get a <em>free outbound diagnostic</em>.</h2>
+      <p>Send your current setup — a LinkedIn profile, a cold email, a sequence. I'll send back a 10-minute written teardown of what's leaking and what to fix first. No call, no pitch, no drip sequence. Just written feedback from a human.</p>
+    </div>
+    <div>
+      <form class="capture-form" id="capture-form" onsubmit="return handleCapture(event)">
+        <div class="field">
+          <input type="email" name="email" placeholder="you@company.com" required aria-label="Your email" />
+          <button type="submit" class="btn">Get the diagnostic →</button>
+        </div>
+        <span class="capture-note">I'll email within 24 hours asking for your material. Then the diagnostic lands in your inbox — usually within 3 business days.</span>
+        <div class="capture-success" id="capture-success">✓ Got it. Check your inbox within 24 hours — I'll ask for your current outbound material and send the diagnostic back.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="book" class="cta-final" data-reveal>
+  <div class="container">
+    <span class="mono">§ Contact</span>
+    <h2>Book the <em>call</em>.</h2>
+    <p>30 minutes. No deck. No pitch. You tell me what you're selling and what you've tried — <em>I tell you straight if this is a fit</em>.</p>
+    <div class="ctas">
+      <a href="/contact.html" class="btn btn-lg">Book a 30-min call →</a>
+      <a href="/fit.html" class="btn btn-lg btn-ghost-dark">Take the fit check</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Subtle nav border on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Field notes capture — local-store lead + mailto trigger for follow-up
+  function handleCapture(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const success = document.getElementById('capture-success');
+    // Store locally
+    try {
+      const existing = JSON.parse(localStorage.getItem('ascent_diagnostic_requests') || '[]');
+      existing.push({ email, at: new Date().toISOString() });
+      localStorage.setItem('ascent_diagnostic_requests', JSON.stringify(existing));
+    } catch(_) {}
+
+    // Fire a hidden mailto so Jamil gets notified of the request. Uses a tiny
+    // window popup that closes itself — avoids disrupting the user's page.
+    const subject = encodeURIComponent(`Outbound diagnostic request — ${email}`);
+    const body = encodeURIComponent(`New free diagnostic request.\n\nEmail: ${email}\n\nI'll reply asking for their outbound material, then send the diagnostic within 3 business days.\n\n— Sent from getascent.co homepage`);
+    const mailtoLink = `mailto:jamil@getascent.co?subject=${subject}&body=${body}`;
+
+    // Create a hidden link + click it so it opens the mail client without
+    // navigating away. Some browsers still switch focus, so the timeout
+    // ensures we show success state either way.
+    const ghostLink = document.createElement('a');
+    ghostLink.href = mailtoLink;
+    ghostLink.style.display = 'none';
+    document.body.appendChild(ghostLink);
+    ghostLink.click();
+    document.body.removeChild(ghostLink);
+
+    form.querySelector('.field').style.display = 'none';
+    form.querySelector('.capture-note').style.display = 'none';
+    success.classList.add('shown');
+    return false;
+  }
+</script>
+
+<script src="shared.js" defer></script>
+</body>
+</html>

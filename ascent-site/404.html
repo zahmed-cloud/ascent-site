@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Not found — Ascent</title>
+<meta name="description" content="That page doesn't exist. Here's where to go instead." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="shared.css">
+
+<style>
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+  main { flex: 1; display: flex; align-items: center; padding: 80px 0; }
+  .not-found {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 32px;
+    text-align: center;
+  }
+  .not-found .code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: block;
+  }
+  .not-found h1 {
+    font-size: clamp(56px, 9vw, 120px);
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+  .not-found h1 em { font-style: italic; color: var(--accent); }
+  .not-found p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-bottom: 48px;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+  .nf-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .nf-suggestions {
+    border-top: 1px solid var(--ink-line);
+    padding-top: 32px;
+    text-align: left;
+  }
+  .nf-suggestions .mono { display: block; margin-bottom: 16px; text-align: center; }
+  .nf-suggestions a {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ink-line);
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--ink);
+    transition: padding 0.2s, color 0.15s;
+    letter-spacing: -0.015em;
+  }
+  .nf-suggestions a:last-child { border-bottom: none; }
+  .nf-suggestions a:hover { padding-left: 8px; color: var(--accent); }
+  .nf-suggestions a .arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 640px) {
+    .not-found { padding: 0 20px; }
+    main { padding: 40px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+      <a href="/thinking.html">Thinking</a>
+      <a href="/work.html">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="not-found">
+    <span class="code">404 · Not found</span>
+    <h1>Page <em>missing</em>.</h1>
+    <p>That URL doesn't exist, or it used to and doesn't anymore. Here's where to go.</p>
+
+    <div class="nf-links">
+      <a href="/" class="btn btn-lg">Back to home →</a>
+      <a href="/fit.html" class="btn btn-lg btn-ghost">Take the fit check</a>
+    </div>
+
+    <div class="nf-suggestions">
+      <span class="mono">§ Or try these</span>
+      <a href="/thinking/structural-misalignment.html">
+        <span>Read the thesis</span>
+        <span class="arrow">Thinking →</span>
+      </a>
+      <a href="/work/salescoachpro.html">
+        <span>See what we've built</span>
+        <span class="arrow">Work →</span>
+      </a>
+      <a href="/contact.html">
+        <span>Book a 30-min call</span>
+        <span class="arrow">Contact →</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+
+<script src="/shared.js" defer></script>
+</body>
+</html>

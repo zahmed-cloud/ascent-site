@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thinking — Ascent</title>
+<meta name="description" content="Short, sharp notes on outbound as a commercial function. Read by founders who are tired of reading the same agency playbook." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Thinking — Ascent" />
+<meta property="og:description" content="Short, sharp notes on running outbound as a commercial function." />
+
+<link rel="canonical" href="https://getascent.co/thinking.html" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="shared.css">
+
+<style>
+  .thinking-hero {
+    padding: 100px 0 60px;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .thinking-hero .mono { margin-bottom: 24px; display: block; }
+  .thinking-hero h1 {
+    font-size: clamp(56px, 8vw, 112px);
+    margin-bottom: 24px;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+  .thinking-hero h1 em { font-style: italic; color: var(--accent); }
+  .thinking-hero p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    line-height: 1.35;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+
+  .essays {
+    padding: 40px 0 120px;
+  }
+
+  .essay-list { list-style: none; }
+
+  .essay-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--ink-line);
+    transition: all 0.2s ease;
+    align-items: baseline;
+  }
+  .essay-item:hover {
+    padding-left: 16px;
+  }
+  .essay-item a {
+    display: contents;
+  }
+  .essay-item .date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    padding-top: 8px;
+  }
+  .essay-item .content h2 {
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.028em;
+    margin-bottom: 12px;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+  .essay-item:hover .content h2 { color: var(--accent); }
+  .essay-item .content p {
+    font-size: 15px;
+    color: var(--ink-mute);
+    line-height: 1.55;
+    max-width: 560px;
+  }
+  .essay-item .arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.2s;
+    white-space: nowrap;
+    padding-top: 8px;
+  }
+  .essay-item:hover .arrow { color: var(--accent); transform: translateX(4px); }
+
+  .signup-strip {
+    margin-top: 80px;
+    padding: 48px;
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .signup-strip h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 24px;
+    letter-spacing: -0.025em;
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+  .signup-strip h3 em { font-style: italic; color: var(--accent); }
+  .signup-strip p { font-size: 14px; color: var(--ink-mute); line-height: 1.5; }
+  .signup-form { display: flex; gap: 8px; padding: 6px; background: var(--bg); border: 1px solid var(--ink-line); border-radius: 8px; }
+  .signup-form:focus-within { border-color: var(--ink); }
+  .signup-form input {
+    border: none; background: transparent; padding: 10px 14px;
+    font-family: inherit; font-size: 14px; color: var(--ink); outline: none; min-width: 240px;
+  }
+  .signup-form button {
+    padding: 10px 16px; background: var(--ink); color: var(--bg);
+    border: none; border-radius: 5px; font-family: inherit;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+  }
+  .signup-form button:hover { background: var(--accent); }
+  .signup-done { display: none; color: var(--success); font-size: 13px; }
+  .signup-done.shown { display: block; }
+
+  @media (max-width: 700px) {
+    .thinking-hero { padding: 60px 0 40px; }
+    .essay-item { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
+    .essay-item:hover { padding-left: 0; }
+    .signup-strip { grid-template-columns: 1fr; gap: 20px; padding: 32px; }
+    .signup-form input { min-width: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+      <a href="/thinking.html" class="active">Thinking</a>
+      <a href="/work.html">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="thinking-hero">
+    <div class="container">
+      <span class="mono fade d1">§ Thinking</span>
+      <h1 class="fade d2">Notes from<br>inside <em>the pipeline</em>.</h1>
+      <p class="fade d3">Short essays on what actually moves outbound — and what doesn't. Written for founders who are tired of the same playbook dressed up in new words.</p>
+    </div>
+  </section>
+
+  <section class="essays">
+    <div class="container">
+      <ul class="essay-list">
+
+        <li class="essay-item">
+          <a href="/thinking/structural-misalignment.html">
+            <span class="date">Apr 2026 · 6 min read</span>
+            <div class="content">
+              <h2>Structural misalignment is why your outbound is broken.</h2>
+              <p>Most outbound doesn't fail because the copy is bad or the channel is saturated. It fails because no one is accountable for the output. Here's what that looks like — and how to fix it.</p>
+            </div>
+            <span class="arrow">Read →</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="/thinking/why-outbound-fails.html">
+            <span class="date">Apr 2026 · 4 min read</span>
+            <div class="content">
+              <h2>The three quiet ways outbound programs die.</h2>
+              <p>Everyone blames the messaging. It's almost never the messaging. It's targeting decay, infrastructure rot, and reply neglect — in that order. A field guide.</p>
+            </div>
+            <span class="arrow">Read →</span>
+          </a>
+        </li>
+
+        <li class="essay-item">
+          <a href="/thinking/no-tiers.html">
+            <span class="date">Mar 2026 · 3 min read</span>
+            <div class="content">
+              <h2>Why we don't sell tiers.</h2>
+              <p>Tier sheets exist to de-risk buying — not to improve outcomes. For services where the work is bespoke, they actively hurt the buyer. An argument for scoping to fit.</p>
+            </div>
+            <span class="arrow">Read →</span>
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="signup-strip">
+        <div>
+          <h3>Get new notes <em>when they drop</em>.</h3>
+          <p>Infrequent. Short. Written the same week something moves. No funnels, no upsells.</p>
+        </div>
+        <form class="signup-form" id="sf" onsubmit="return submitSignup(event)">
+          <input type="email" required placeholder="you@company.com" id="sf-email" />
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="signup-done" id="sf-done">✓ You're on the list.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  function submitSignup(e) {
+    e.preventDefault();
+    const email = document.getElementById('sf-email').value;
+    try {
+      const list = JSON.parse(localStorage.getItem('ascent_subscribers') || '[]');
+      list.push({ email, at: new Date().toISOString(), source: 'thinking' });
+      localStorage.setItem('ascent_subscribers', JSON.stringify(list));
+    } catch(_) {}
+    document.getElementById('sf').style.display = 'none';
+    document.getElementById('sf-done').classList.add('shown');
+    return false;
+  }
+</script>
+
+<script src="/shared.js" defer></script>
+</body>
+</html>

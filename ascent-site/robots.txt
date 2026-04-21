@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Ascent — B2B outbound growth partnership
+# Worldwide, applications-only
+
+Sitemap: https://getascent.co/sitemap.xml

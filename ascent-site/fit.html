@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fit check — Ascent</title>
+<meta name="description" content="Two minutes. Five questions. A clear answer on whether Ascent is the right outbound partner for where you are right now." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Fit check — Ascent" />
+<meta property="og:description" content="Two minutes. Five questions. A clear answer." />
+
+<link rel="canonical" href="https://getascent.co/fit.html" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="shared.css">
+
+<style>
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+  main { flex: 1; }
+
+  /* HERO */
+  .fit-hero {
+    padding: 100px 0 40px;
+    text-align: center;
+  }
+  .fit-hero .mono { margin-bottom: 24px; display: block; }
+  .fit-hero h1 {
+    font-size: clamp(48px, 7vw, 88px);
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+  }
+  .fit-hero h1 em { font-style: italic; color: var(--accent); }
+  .fit-hero p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  /* ASSESSMENT */
+  .assessment {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 32px 120px;
+  }
+
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 40px;
+    justify-content: center;
+  }
+  .progress-dot {
+    width: 36px;
+    height: 2px;
+    background: var(--ink-line);
+    transition: background 0.3s;
+    border-radius: 1px;
+  }
+  .progress-dot.active { background: var(--ink); }
+  .progress-dot.current { background: var(--accent); }
+
+  .question-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    padding: 48px 40px;
+    position: relative;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+  }
+  .question-num span.of { color: var(--ink-mute); opacity: 0.5; }
+
+  .question-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .question-text em { font-style: italic; color: var(--accent); }
+  .question-hint {
+    font-size: 13.5px;
+    color: var(--ink-mute);
+    margin-bottom: 32px;
+    line-height: 1.5;
+    margin-top: -24px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: auto;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+    font-size: 15px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .option:hover {
+    border-color: var(--ink);
+    transform: translateY(-1px);
+  }
+  .option.selected {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .option .check {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--ink-line);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    position: relative;
+  }
+  .option.selected .check {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .option.selected .check::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: var(--bg);
+    border-radius: 50%;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    gap: 16px;
+  }
+  .back-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.15s;
+  }
+  .back-btn:hover { color: var(--ink); }
+  .back-btn.hidden { visibility: hidden; }
+
+  .next-btn {
+    padding: 12px 22px;
+    background: var(--ink);
+    color: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: -0.005em;
+    transition: all 0.15s;
+  }
+  .next-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+  .next-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* INPUT FIELDS (for email at result step) */
+  .input-field {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 10px;
+    transition: border-color 0.2s;
+  }
+  .input-field:focus-within { border-color: var(--ink); }
+  .input-field input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    outline: none;
+  }
+  .input-field input::placeholder { color: var(--ink-mute); }
+
+  /* RESULT */
+  .result {
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    padding: 56px 48px;
+    animation: resultIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes resultIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result .verdict-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .result .verdict {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .result .verdict em { font-style: italic; color: var(--accent); }
+  .result .verdict.soft em { color: var(--ink-mute); }
+
+  .result .explanation {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    margin-bottom: 32px;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+
+  .result-spec {
+    border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+    margin-bottom: 32px;
+  }
+  .result-spec .row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ink-line-soft);
+    gap: 24px;
+  }
+  .result-spec .row:last-child { border-bottom: none; }
+  .result-spec dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-top: 2px;
+  }
+  .result-spec dd {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+
+  .next-step {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .next-step .mono {
+    color: rgba(245, 242, 234, 0.5);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .next-step h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--bg);
+    margin-bottom: 12px;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .next-step h3 em { font-style: italic; color: var(--accent); }
+  .next-step p {
+    font-size: 14px;
+    color: rgba(245, 242, 234, 0.7);
+    margin-bottom: 20px;
+    line-height: 1.55;
+  }
+  .next-step .btn-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 11px 18px;
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--bg);
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .next-step .btn-light:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  .email-capture {
+    padding: 24px;
+    background: var(--bg);
+    border: 1px dashed var(--ink-line);
+    border-radius: 12px;
+  }
+  .email-capture .mono { display: block; margin-bottom: 12px; }
+  .email-capture h4 em { font-style: italic; }
+  .email-capture p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .email-capture .submit-btn {
+    padding: 11px 18px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    box-shadow: 0 2px 8px rgba(217, 67, 42, 0.2);
+    transition: all 0.15s;
+  }
+  .email-capture .submit-btn:hover { background: #c43a22; transform: translateY(-1px); }
+  .email-capture .sent {
+    display: none;
+    font-size: 14px;
+    color: var(--success);
+    padding-top: 8px;
+    line-height: 1.5;
+  }
+  .email-capture.done .input-field { display: none; }
+  .email-capture.done p,
+  .email-capture.done h4 { display: none; }
+  .email-capture.done .sent { display: block; }
+
+  .result-again {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .result-again button {
+    background: transparent;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.15s;
+  }
+  .result-again button:hover { color: var(--ink); }
+
+  /* TRANSITIONS */
+  .question-card.entering {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  .question-card.active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .question-card.leaving {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  @media (max-width: 700px) {
+    .fit-hero { padding: 60px 0 20px; }
+    .assessment { padding: 40px 16px 80px; }
+    .question-card { padding: 32px 24px; min-height: 380px; }
+    .result { padding: 40px 28px; }
+    .result-spec .row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html" class="active">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+      <a href="/thinking.html">Thinking</a>
+      <a href="/work.html">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="fit-hero">
+    <div class="container">
+      <span class="mono fade d1">§ Fit check · 2 minutes</span>
+      <h1 class="fade d2">See if we're a <em>fit</em>.</h1>
+      <p class="fade d3">Five questions. You get a direct answer on where you stand, an estimated timeline, and a clear next step — whether that's a call, a free diagnostic, or just some honest direction.</p>
+    </div>
+  </section>
+
+  <div class="assessment">
+
+    <div class="progress" id="progress">
+      <div class="progress-dot current"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+    </div>
+
+    <div id="question-container"></div>
+    <div id="result-container"></div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Subtle nav border on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // =========================================================================
+  // FIT ASSESSMENT — 5 questions, hybrid scoring
+  // =========================================================================
+
+  const QUESTIONS = [
+    {
+      id: 'stage',
+      text: 'Where is your business right now?',
+      hint: 'Pick the closest. We use this to judge whether outbound is the right lever for you today.',
+      options: [
+        { label: 'Pre-product, still shaping the offer', value: 'pre' },
+        { label: 'Early traction — first customers, refining fit', value: 'early' },
+        { label: 'Proven offer — ready to scale pipeline', value: 'scaling' },
+        { label: 'Established — outbound is one of several growth motions', value: 'mature' },
+      ]
+    },
+    {
+      id: 'acv',
+      text: 'What is your <em>typical deal size</em>?',
+      hint: 'Annual contract value or first-year revenue per customer.',
+      options: [
+        { label: 'Small contracts', value: 'low' },
+        { label: 'Mid-low contracts', value: 'mid-low' },
+        { label: 'Mid contracts', value: 'mid' },
+        { label: 'Large contracts or one-off projects', value: 'high' },
+      ]
+    },
+    {
+      id: 'tried',
+      text: 'What outbound have you <em>tried before</em>?',
+      hint: 'Pick what best describes your history with outbound.',
+      options: [
+        { label: 'Nothing serious yet', value: 'none' },
+        { label: 'Tried DIY — founder sending manually', value: 'diy' },
+        { label: 'Ran an agency or SDR — results were thin', value: 'burnt' },
+        { label: 'Working agency or internal team — want to layer in more', value: 'working' },
+      ]
+    },
+    {
+      id: 'owner',
+      text: 'Who <em>owns outbound</em> today?',
+      hint: 'Who is actually responsible for the pipeline, day to day?',
+      options: [
+        { label: 'The founder — squeezed between everything else', value: 'founder' },
+        { label: 'A junior SDR or VA', value: 'junior' },
+        { label: 'An agency or contractor', value: 'agency' },
+        { label: 'Nobody owns it consistently', value: 'none' },
+      ]
+    },
+    {
+      id: 'timing',
+      text: 'When do you want to <em>start</em>?',
+      hint: 'Honesty helps. We only take partners we can serve properly.',
+      options: [
+        { label: 'This month, if we find fit', value: 'now' },
+        { label: 'Next 60 days', value: 'soon' },
+        { label: 'Exploring — no firm timeline', value: 'explore' },
+        { label: 'Just curious, not buying', value: 'curious' },
+      ]
+    }
+  ];
+
+  let currentStep = 0;
+  const answers = {};
+
+  const qContainer = document.getElementById('question-container');
+  const rContainer = document.getElementById('result-container');
+  const progressDots = document.getElementById('progress').children;
+
+  function renderQuestion(idx) {
+    const q = QUESTIONS[idx];
+    const selected = answers[q.id];
+
+    qContainer.innerHTML = `
+      <div class="question-card entering" id="card">
+        <div class="question-num">Question ${idx + 1}<span class="of"> / 05</span></div>
+        <h2 class="question-text">${q.text}</h2>
+        <div class="question-hint">${q.hint}</div>
+        <div class="options">
+          ${q.options.map(opt => `
+            <button class="option ${selected === opt.value ? 'selected' : ''}" data-value="${opt.value}">
+              <span class="check"></span>
+              <span>${opt.label}</span>
+            </button>
+          `).join('')}
+        </div>
+        <div class="controls">
+          <button class="back-btn ${idx === 0 ? 'hidden' : ''}" id="back-btn">← Back</button>
+          <button class="next-btn" id="next-btn" ${selected ? '' : 'disabled'}>
+            ${idx === QUESTIONS.length - 1 ? 'See the result →' : 'Next →'}
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Update progress
+    Array.from(progressDots).forEach((dot, i) => {
+      dot.classList.remove('active', 'current');
+      if (i < idx) dot.classList.add('active');
+      if (i === idx) dot.classList.add('current');
+    });
+
+    // Animate in
+    requestAnimationFrame(() => {
+      const card = document.getElementById('card');
+      card.classList.remove('entering');
+      card.classList.add('active');
+    });
+
+    // Wire up option clicks
+    qContainer.querySelectorAll('.option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        qContainer.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        answers[q.id] = btn.dataset.value;
+        document.getElementById('next-btn').disabled = false;
+      });
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (!answers[q.id]) return;
+      if (idx < QUESTIONS.length - 1) {
+        transitionTo(idx + 1);
+      } else {
+        showResult();
+      }
+    });
+
+    const backBtn = document.getElementById('back-btn');
+    if (backBtn) {
+      backBtn.addEventListener('click', () => transitionTo(idx - 1));
+    }
+  }
+
+  function transitionTo(newIdx) {
+    const card = document.getElementById('card');
+    if (!card) return;
+    card.classList.remove('active');
+    card.classList.add('leaving');
+    setTimeout(() => {
+      currentStep = newIdx;
+      renderQuestion(newIdx);
+    }, 180);
+  }
+
+  // =========================================================================
+  // SCORING — every outcome routes to a call. The score is a conversation
+  // starter, not a gate. Even low-fit people get a path — either a call or
+  // the free outbound diagnostic in exchange for their email.
+  // =========================================================================
+  function scoreFit() {
+    let score = 0;
+    const reasons = [];
+    const flags = [];
+
+    // Stage scoring
+    if (answers.stage === 'scaling') { score += 3; reasons.push('proven offer'); }
+    else if (answers.stage === 'mature') { score += 2; reasons.push('established business'); }
+    else if (answers.stage === 'early') { score += 1; flags.push('early-stage'); }
+    else if (answers.stage === 'pre') { score += 0; flags.push('pre-offer'); }
+
+    // ACV scoring
+    if (answers.acv === 'high') { score += 3; reasons.push('contract values support operator-led outbound'); }
+    else if (answers.acv === 'mid') { score += 2; reasons.push('deal size supports the model'); }
+    else if (answers.acv === 'mid-low') { score += 1; }
+    else if (answers.acv === 'low') { score += 0; flags.push('lower deal size'); }
+
+    // Tried scoring
+    if (answers.tried === 'burnt') { score += 2; reasons.push('you have seen what thin execution looks like'); }
+    else if (answers.tried === 'working') { score += 1; }
+    else if (answers.tried === 'diy') { score += 2; reasons.push('founder-led outbound is not scalable'); }
+    else if (answers.tried === 'none') { score += 1; }
+
+    // Owner scoring
+    if (answers.owner === 'founder') { score += 2; reasons.push('the founder\'s time is the constraint'); }
+    else if (answers.owner === 'none') { score += 2; reasons.push('no one owns it consistently'); }
+    else if (answers.owner === 'junior') { score += 1; }
+
+    // Timing scoring
+    if (answers.timing === 'now') { score += 2; }
+    else if (answers.timing === 'soon') { score += 1; }
+    else if (answers.timing === 'explore') { score += 0; flags.push('exploring'); }
+    else if (answers.timing === 'curious') { score += 0; flags.push('curious'); }
+
+    return { score, reasons, flags };
+  }
+
+  function showResult() {
+    const card = document.getElementById('card');
+    if (card) {
+      card.classList.remove('active');
+      card.classList.add('leaving');
+    }
+    setTimeout(() => {
+      qContainer.innerHTML = '';
+      const { score, reasons, flags } = scoreFit();
+
+      // Mark all progress dots active
+      Array.from(progressDots).forEach(dot => {
+        dot.classList.remove('current');
+        dot.classList.add('active');
+      });
+
+      // Every result has: verdict, explanation, estWeeks, estScope, primary CTA
+      // Every primary CTA is a call. Every result has email capture for the diagnostic.
+      let verdict, verdictClass, explanation, estWeeks, estScope, fitLabel, routeParam;
+
+      if (score >= 8) {
+        verdict = 'Strong fit.';
+        verdictClass = '';
+        fitLabel = 'Strong';
+        routeParam = 'fit-strong';
+        const r = reasons.slice(0, 2).join(' and ') || 'the signals are aligned';
+        explanation = `Based on your answers — ${r} — you're the kind of partner this is built for. The model fits. The timing fits. Let's talk.`;
+        estWeeks = '2—3 weeks to first qualified call';
+        estScope = answers.acv === 'high' ? 'Full retainer scope' : 'Standard retainer scope';
+      } else if (score >= 5) {
+        verdict = 'Likely fit.';
+        verdictClass = '';
+        fitLabel = 'Likely';
+        routeParam = 'fit-likely';
+        explanation = `Most signals look right. A couple of things worth clarifying on a call, but nothing that rules it out. Worth a conversation.`;
+        estWeeks = '3—4 weeks to first qualified call';
+        estScope = 'Standard retainer scope';
+      } else if (score >= 2) {
+        verdict = 'Worth a call.';
+        verdictClass = '';
+        fitLabel = 'Borderline';
+        routeParam = 'fit-borderline';
+        const f = flags.slice(0, 2).join(' and ') || 'a few pieces';
+        explanation = `On paper it's not a straight yes — ${f} — but honestly, the best way to know is a quick call. We'll either find a way to make it work, or I'll tell you straight who would serve you better here.`;
+        estWeeks = 'Depends on what we uncover';
+        estScope = 'Scoped to your stage';
+      } else {
+        verdict = 'Still worth a call.';
+        verdictClass = '';
+        fitLabel = 'Early';
+        routeParam = 'fit-early';
+        explanation = `You're earlier than our typical partner — but that doesn't mean there's nothing to talk about. Thirty minutes. Free. I'll either help you sort the right sequence of steps, or point you to someone who specialises in where you are.`;
+        estWeeks = 'Let\'s figure it out on the call';
+        estScope = 'Open discussion';
+      }
+
+      rContainer.innerHTML = `
+        <div class="result">
+          <span class="verdict-label">Your result</span>
+          <h2 class="verdict ${verdictClass}"><em>${verdict}</em></h2>
+          <p class="explanation">${explanation}</p>
+
+          <dl class="result-spec">
+            <div class="row">
+              <dt>Fit signal</dt>
+              <dd>${fitLabel} <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-mute);">(${Math.max(0, score)}/12)</span></dd>
+            </div>
+            <div class="row">
+              <dt>Est. timeline</dt>
+              <dd>${estWeeks}</dd>
+            </div>
+            <div class="row">
+              <dt>Scope</dt>
+              <dd>${estScope}</dd>
+            </div>
+          </dl>
+
+          <div class="next-step">
+            <span class="mono">Next step</span>
+            <h3>Book a <em>30-min call</em> with Jamil.</h3>
+            <p>No deck. No pitch. We'll talk through what you've tried, what's working, and whether Ascent is the right move — honest answer either way.</p>
+            <a href="/contact.html?source=${routeParam}" class="btn-light">Book the call →</a>
+          </div>
+
+          <div class="email-capture" id="email-capture">
+            <span class="mono">§ Not ready for a call yet?</span>
+            <h4 style="font-family:'Source Serif 4',serif;font-size:20px;letter-spacing:-0.02em;margin-bottom:8px;font-weight:400;">Get a <em style="font-style:italic;color:var(--accent);">free outbound diagnostic</em> instead.</h4>
+            <p>Send your current outbound setup — a LinkedIn profile, a cold email, a sequence — and I'll send back a 10-minute written teardown of what's leaking and what to fix first. Free. No call required. Written by a human.</p>
+            <div class="input-field">
+              <input type="email" id="capture-email" placeholder="you@company.com" required />
+              <button class="submit-btn" onclick="saveResult()">Get the diagnostic →</button>
+            </div>
+            <div class="sent">✓ Got it. I'll be in touch within 24 hours with your diagnostic.</div>
+          </div>
+
+          <div class="result-again">
+            <button onclick="restartAssessment()">← Take it again</button>
+          </div>
+        </div>
+      `;
+
+      // Save the full result so we can reference in contact form
+      try {
+        const fullResult = { answers, score, verdict, fitLabel, at: new Date().toISOString() };
+        localStorage.setItem('ascent_fit_result', JSON.stringify(fullResult));
+      } catch(_) {}
+    }, 180);
+  }
+
+  function saveResult() {
+    const emailInput = document.getElementById('capture-email');
+    const email = emailInput.value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      emailInput.focus();
+      emailInput.style.borderColor = 'var(--accent)';
+      setTimeout(() => { emailInput.style.borderColor = ''; }, 2000);
+      return;
+    }
+    const capture = document.getElementById('email-capture');
+    const fitResult = JSON.parse(localStorage.getItem('ascent_fit_result') || '{}');
+
+    // Store locally
+    try {
+      const existing = JSON.parse(localStorage.getItem('ascent_fit_leads') || '[]');
+      existing.push({ email, result: fitResult, at: new Date().toISOString() });
+      localStorage.setItem('ascent_fit_leads', JSON.stringify(existing));
+    } catch(_) {}
+
+    // Fire the email to Jamil with full context so the diagnostic request lands as a real lead
+    const subject = `Outbound diagnostic request — ${fitResult.fitLabel || 'unscored'} fit — ${email}`;
+    let body = `New diagnostic request from the fit check.\n\nEmail: ${email}\n\n`;
+    if (fitResult.verdict) body += `Verdict: ${fitResult.verdict}\n`;
+    if (typeof fitResult.score === 'number') body += `Score: ${fitResult.score}/12\n`;
+    if (fitResult.answers) {
+      body += `\n-- Answers --\n`;
+      body += `Stage: ${fitResult.answers.stage || '—'}\n`;
+      body += `ACV: ${fitResult.answers.acv || '—'}\n`;
+      body += `Tried: ${fitResult.answers.tried || '—'}\n`;
+      body += `Owner: ${fitResult.answers.owner || '—'}\n`;
+      body += `Timing: ${fitResult.answers.timing || '—'}\n`;
+    }
+    body += `\nSend diagnostic within 24h.`;
+
+    // Fire mailto so Jamil gets notified immediately with full context
+    const mailto = `mailto:jamil@getascent.co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const ghostLink = document.createElement('a');
+    ghostLink.href = mailto;
+    ghostLink.style.display = 'none';
+    document.body.appendChild(ghostLink);
+    ghostLink.click();
+    document.body.removeChild(ghostLink);
+
+    capture.classList.add('done');
+
+    // Scroll so they see the confirmation
+    setTimeout(() => {
+      capture.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+
+  function restartAssessment() {
+    currentStep = 0;
+    Object.keys(answers).forEach(k => delete answers[k]);
+    rContainer.innerHTML = '';
+    renderQuestion(0);
+  }
+
+  // Kick off
+  renderQuestion(0);
+</script>
+
+<script src="/shared.js" defer></script>
+</body>
+</html>

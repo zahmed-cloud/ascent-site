@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perpetual Group — first-clients outreach — Ascent</title>
+<meta name="description" content="Feodor Kozmin was building Perpetual Group, a new digital marketing agency. He'd never run outbound. Ascent shaped the approach and ran the first wave. Here's what happened." />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Perpetual Group · First-clients outreach — Ascent" />
+
+<link rel="canonical" href="https://getascent.co/work/perpetual-group.html" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../shared.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Perpetual Group — first-clients outreach",
+  "author": { "@type": "Person", "name": "Jamil Ahmed" },
+  "publisher": { "@type": "Organization", "name": "Ascent", "url": "https://getascent.co" }
+}
+</script>
+
+<style>
+  .case-hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .case-hero .breadcrumb {
+    display: inline-flex; gap: 8px; margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-mute);
+  }
+  .case-hero .breadcrumb a { color: var(--ink-mute); transition: color 0.15s; }
+  .case-hero .breadcrumb a:hover { color: var(--ink); }
+  .case-hero .breadcrumb .sep { opacity: 0.4; }
+  .case-hero .client-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .case-hero h1 {
+    font-size: clamp(44px, 6.5vw, 84px);
+    margin-bottom: 32px;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    max-width: 880px;
+  }
+  .case-hero h1 em { font-style: italic; color: var(--accent); }
+  .case-hero .summary {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    max-width: 680px;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+
+  .case-meta-bar {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--ink-line);
+    background: var(--bg-raised);
+  }
+  .case-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .case-meta-grid .item .mono { display: block; margin-bottom: 8px; }
+  .case-meta-grid .item .val {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+
+  .case-body { padding: 80px 0; }
+  .case-body .prose { max-width: 680px; margin: 0 auto; padding: 0 32px; }
+  .case-body h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    margin-top: 56px;
+    margin-bottom: 24px;
+    letter-spacing: -0.028em;
+    line-height: 1.1;
+  }
+  .case-body h2:first-child { margin-top: 0; }
+  .case-body h2 em { font-style: italic; color: var(--accent); }
+  .case-body h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-right: 12px;
+    letter-spacing: 0.08em;
+  }
+  .case-body p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    letter-spacing: -0.012em;
+  }
+  .case-body p em { font-style: italic; color: var(--ink); }
+  .case-body ul { margin: 24px 0; padding-left: 0; list-style: none; }
+  .case-body ul li {
+    font-family: 'Source Serif 4', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 8px 0 8px 24px;
+    position: relative;
+  }
+  .case-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+  .testimonial-block {
+    max-width: 680px;
+    margin: 60px auto;
+    padding: 40px;
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+  }
+  .testimonial-block blockquote {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  .testimonial-block blockquote::before {
+    content: '"';
+    color: var(--accent);
+    font-size: 1.1em;
+    margin-right: 4px;
+  }
+  .testimonial-block blockquote::after {
+    content: '"';
+    color: var(--accent);
+    font-size: 1.1em;
+  }
+  .testimonial-block .attr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+  }
+  .testimonial-block .attr strong { color: var(--ink); font-weight: 500; }
+  .testimonial-block .source {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+  }
+
+  .case-cta {
+    padding: 100px 0;
+    background: var(--ink);
+    color: var(--bg);
+    text-align: center;
+  }
+  .case-cta .mono { color: rgba(245, 242, 234, 0.5); margin-bottom: 24px; display: block; }
+  .case-cta h2 {
+    font-size: clamp(40px, 6vw, 72px);
+    color: var(--bg);
+    margin-bottom: 32px;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    font-weight: 400;
+  }
+  .case-cta h2 em { font-style: italic; color: var(--accent); }
+  .case-cta p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    color: rgba(245, 242, 234, 0.7);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.4;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+  .case-cta .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .case-cta .btn {
+    background: var(--bg);
+    color: var(--ink);
+    border-color: var(--bg);
+    padding: 13px 22px;
+    font-size: 14px;
+  }
+  .case-cta .btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  .next-case {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 32px 0;
+  }
+  .next-case .mono { display: block; margin-bottom: 16px; }
+  .next-case a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+    transition: padding 0.2s;
+  }
+  .next-case a:hover { padding-left: 12px; }
+  .next-case h4 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    transition: color 0.15s;
+  }
+  .next-case a:hover h4 { color: var(--accent); }
+  .next-case .arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 700px) {
+    .case-hero { padding: 40px 0 32px; }
+    .case-meta-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .case-body { padding: 48px 0; }
+    .case-body .prose { padding: 0 20px; }
+    .testimonial-block { padding: 28px; margin: 40px 20px; }
+    .testimonial-block blockquote { font-size: 20px; }
+    .case-cta { padding: 64px 0; }
+    .next-case { padding: 40px 20px 0; }
+    .next-case a { flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+      <a href="/thinking.html">Thinking</a>
+      <a href="/work.html" class="active">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/work.html">Work</a>
+      <span class="sep">/</span>
+      <span>Perpetual Group</span>
+    </div>
+    <span class="client-mono">§ Perpetual Group · Digital marketing agency</span>
+    <h1>First clients for a <em>new agency</em>.</h1>
+    <p class="summary">Feodor was launching Perpetual Group and had never run outbound. We shaped the approach, built the messaging, and ran the first wave. The early clients came from it.</p>
+  </div>
+</header>
+
+<section class="case-meta-bar">
+  <div class="container case-meta-grid">
+    <div class="item">
+      <span class="mono">Partner</span>
+      <span class="val">Perpetual Group</span>
+    </div>
+    <div class="item">
+      <span class="mono">Category</span>
+      <span class="val">Digital marketing</span>
+    </div>
+    <div class="item">
+      <span class="mono">Channel</span>
+      <span class="val">Email + LinkedIn</span>
+    </div>
+    <div class="item">
+      <span class="mono">Focus</span>
+      <span class="val">Agency acquisition</span>
+    </div>
+  </div>
+</section>
+
+<article class="case-body">
+  <div class="prose">
+
+    <h2><span class="num">01 /</span>The <em>starting point</em></h2>
+    <p>Feodor Kozmin was standing up Perpetual Group — a new digital marketing practice. He had a clear idea of what he wanted to sell, a few people he could serve well, and zero outbound motion.</p>
+    <p>That's the hardest position to start from. Not "our outbound is broken." Just "there is no outbound yet, and I don't know where to begin without burning the first ninety days on the wrong approach."</p>
+
+    <h2><span class="num">02 /</span>What <em>we did</em></h2>
+    <p>Three calls before anything was sent:</p>
+    <ul>
+      <li>Defined who Perpetual could genuinely help at this stage — not aspirational buyers, but the ones where the offer made clear sense today.</li>
+      <li>Wrote the outreach to sound like a founder reaching out, because a founder was. No agency voice. No hedging.</li>
+      <li>Built sending infrastructure that could grow with the business — warmed properly, one domain at a time, so the first six months didn't cost him the next twelve.</li>
+    </ul>
+    <p>Then we ran it. LinkedIn and email, daily, with every reply handled the same day and every learning fed back into the targeting the next week.</p>
+
+    <h2><span class="num">03 /</span>What <em>changed</em></h2>
+    <p>The conversations started inside two weeks. The first clients came through the door in the first couple of months. More importantly, Feodor had something he could run himself from that point on — a playbook he'd seen work on his own business, not a deck he'd bought.</p>
+    <p>The point of doing it this way was always to set up a function, not to run a campaign. When the engagement ended, Perpetual had a pipeline motion that kept producing.</p>
+
+  </div>
+
+  <div class="testimonial-block">
+    <blockquote>Jamil is a real one. Helped me immensely with outreach when I first started my agency. Really insightful and hard-working. Was really happy with the results he gave me and his business instincts are that of a natural on all levels.</blockquote>
+    <div class="attr"><strong>Feodor Kozmin</strong> · Founder, Perpetual Group</div>
+    <div class="source">Source: LinkedIn recommendation · September 2025</div>
+  </div>
+
+  <div class="prose">
+    <h2><span class="num">04 /</span>Why this <em>worked</em></h2>
+    <p>Founders starting from zero are the hardest buyers to serve well. They have no benchmarks, so "good" is hard to prove. They have no volume yet, so the work has to be hands-on in a way that doesn't scale.</p>
+    <p>What works is <em>doing the work with them, not just for them</em>. Sitting on the first calls. Reading the first replies. Adjusting in the same week, not the next quarter. That's structurally what Ascent runs — one operator, full ownership, end to end. The agency-founder dynamic is a specific case. The structure underneath it is general.</p>
+  </div>
+
+  <div class="next-case">
+    <span class="mono">§ Read next</span>
+    <a href="/work/salescoachpro.html">
+      <h4>Booking podcast hosts for a sales coaching founder.</h4>
+      <span class="arrow">SalesCoachPro →</span>
+    </a>
+  </div>
+</article>
+
+<section class="case-cta">
+  <div class="container">
+    <span class="mono">§ Starting from zero?</span>
+    <h2>Let's talk about <em>yours</em>.</h2>
+    <p>Thirty minutes. No deck. If you're building something new and outbound is the gap, this is the right conversation.</p>
+    <div class="ctas">
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+      <a href="/fit.html" class="btn btn-ghost" style="background: transparent; color: var(--bg); border-color: rgba(245, 242, 234, 0.3);">Check fit first</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+
+<script src="../shared.js" defer></script>
+</body>
+</html>

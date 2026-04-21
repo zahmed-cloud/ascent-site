@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a call — Ascent</title>
+<meta name="description" content="Thirty minutes. No deck. No pitch. We work out together whether Ascent is the right fit for where you are — including if it isn't." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Book a call — Ascent" />
+<meta property="og:description" content="Thirty minutes. No deck. No pitch." />
+
+<link rel="canonical" href="https://getascent.co/contact.html" />
+<meta name="theme-color" content="#f5f2ea" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="shared.css">
+
+<style>
+  main { min-height: calc(100vh - 80px); }
+
+  .contact-hero {
+    padding: 80px 0 40px;
+  }
+  .contact-hero .mono { margin-bottom: 24px; display: block; }
+  .contact-hero h1 {
+    font-size: clamp(48px, 7vw, 96px);
+    margin-bottom: 24px;
+    letter-spacing: -0.042em;
+    line-height: 0.98;
+    max-width: 820px;
+  }
+  .contact-hero h1 em { font-style: italic; color: var(--accent); }
+  .contact-hero p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    max-width: 640px;
+    line-height: 1.35;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+  }
+
+  .contact-grid {
+    padding: 20px 0 120px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* FORM */
+  .contact-form-wrap {
+    background: var(--bg-raised);
+    border: 1px solid var(--ink-line);
+    border-radius: 16px;
+    padding: 40px;
+  }
+
+  .fit-banner {
+    display: none;
+    padding: 16px 20px;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .fit-banner.hidden { display: none; }
+  .fit-banner .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-top: 7px; flex-shrink: 0;
+  }
+  .fit-banner .text {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .fit-banner .text strong {
+    color: var(--ink);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .form-section {
+    margin-bottom: 28px;
+  }
+  .form-section:last-of-type { margin-bottom: 32px; }
+
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+  }
+  .form-label .req { color: var(--accent); margin-left: 4px; }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+    letter-spacing: -0.005em;
+  }
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: var(--ink);
+  }
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--ink-mute);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2385827a' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Optional extra-context collapsible */
+  details.extra-context {
+    margin: 8px 0 24px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px dashed var(--ink-line);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+  details.extra-context[open] { border-style: solid; border-color: var(--ink-line); }
+  details.extra-context summary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    cursor: pointer;
+    list-style: none;
+    outline: none;
+    transition: color 0.15s;
+  }
+  details.extra-context summary::-webkit-details-marker { display: none; }
+  details.extra-context summary:hover { color: var(--ink); }
+  details.extra-context[open] summary { color: var(--ink); margin-bottom: 16px; }
+  details.extra-context .extra-inner { padding-top: 8px; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 15px 24px;
+    background: var(--ink);
+    color: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    transition: all 0.15s;
+  }
+  .submit-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .form-note {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    text-align: center;
+  }
+
+  /* SIDEBAR */
+  .contact-sidebar {
+    padding-top: 20px;
+  }
+  .sidebar-block {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .sidebar-block:first-child { padding-top: 0; }
+  .sidebar-block:last-child { border-bottom: none; }
+
+  .sidebar-block .mono {
+    display: block;
+    margin-bottom: 12px;
+  }
+  .sidebar-block h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .sidebar-block h3 em { font-style: italic; color: var(--accent); }
+  .sidebar-block p {
+    font-size: 14.5px;
+    color: var(--ink-mute);
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .sidebar-block a.direct {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--ink);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .sidebar-block a.direct:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .expectations {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .expectations li {
+    padding: 10px 0 10px 24px;
+    position: relative;
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+  }
+  .expectations li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  /* SUCCESS STATE */
+  .success-state {
+    display: none;
+    padding: 48px 40px;
+    background: var(--bg-raised);
+    border: 1px solid var(--success);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .success-state.shown { display: block; }
+  .success-state .check {
+    width: 56px; height: 56px;
+    margin: 0 auto 24px;
+    background: var(--success);
+    color: var(--bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 300;
+  }
+  .success-state h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 32px;
+    letter-spacing: -0.028em;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .success-state h2 em { font-style: italic; color: var(--accent); }
+  .success-state p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    max-width: 420px;
+    margin: 0 auto 20px;
+    letter-spacing: -0.015em;
+    font-weight: 300;
+  }
+  .success-state .mailto-fallback {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    padding: 12px 18px;
+    display: inline-block;
+    background: var(--bg);
+    border: 1px solid var(--ink-line);
+    border-radius: 6px;
+    margin-top: 8px;
+    transition: all 0.15s;
+  }
+  .success-state .mailto-fallback:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  @media (max-width: 860px) {
+    .contact-hero { padding: 48px 0 24px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; padding-bottom: 80px; }
+    .contact-form-wrap { padding: 28px 24px; }
+    .form-row { grid-template-columns: 1fr; gap: 12px; }
+    .contact-sidebar { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Ascent<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+      <a href="/thinking.html">Thinking</a>
+      <a href="/work.html">Work</a>
+      <span class="nav-divider"></span><a href="/contact.html" class="btn">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="contact-hero">
+    <div class="container">
+      <span class="mono fade d1">§ Book a call</span>
+      <h1 class="fade d2">Book a <em>30-minute</em> call.</h1>
+      <p class="fade d3">No deck, no pitch. Tell me what you're selling and what you've tried, and I'll tell you straight whether Ascent is the right move — including if it isn't.</p>
+    </div>
+  </section>
+
+  <div class="container contact-grid">
+
+    <!-- FORM COLUMN -->
+    <div>
+
+      <div class="contact-form-wrap" id="form-wrap">
+
+        <!-- Pulled in from fit assessment if user came from /fit.html -->
+        <div class="fit-banner hidden" id="fit-banner">
+          <span class="dot"></span>
+          <div class="text">
+            <strong id="fit-banner-title">Your fit check is attached.</strong>
+            <span id="fit-banner-copy">We've loaded your result into this message so we can open the call with context.</span>
+          </div>
+        </div>
+
+        <form id="contact-form" onsubmit="return submitForm(event)">
+
+          <div class="form-row">
+            <div class="form-section">
+              <label class="form-label" for="name">Your name <span class="req">*</span></label>
+              <input class="form-input" type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Founder" />
+            </div>
+            <div class="form-section">
+              <label class="form-label" for="email">Email <span class="req">*</span></label>
+              <input class="form-input" type="email" id="email" name="email" required autocomplete="email" placeholder="jane@company.com" />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label" for="company">Company <span class="req">*</span></label>
+            <input class="form-input" type="text" id="company" name="company" required autocomplete="organization" placeholder="Acme B2B" />
+          </div>
+
+          <div class="form-section">
+            <label class="form-label" for="message">What's going on? <span class="req">*</span></label>
+            <textarea class="form-textarea" id="message" name="message" required placeholder="A sentence or two on where you are with outbound today, and what you'd want out of a call."></textarea>
+          </div>
+
+          <details class="extra-context">
+            <summary>+ Add context (optional, makes the call faster)</summary>
+            <div class="extra-inner">
+              <div class="form-section">
+                <label class="form-label" for="role">Your role</label>
+                <input class="form-input" type="text" id="role" name="role" autocomplete="organization-title" placeholder="Founder, Head of Sales, etc." />
+              </div>
+              <div class="form-section">
+                <label class="form-label" for="acv">Typical deal size</label>
+                <select class="form-select" id="acv" name="acv">
+                  <option value="">— Pick one —</option>
+                  <option value="Small">Small contracts</option>
+                  <option value="Mid-low">Mid-low contracts</option>
+                  <option value="Mid">Mid contracts</option>
+                  <option value="Large">Large contracts or one-off projects</option>
+                </select>
+              </div>
+              <div class="form-section">
+                <label class="form-label" for="tried">What have you tried so far?</label>
+                <select class="form-select" id="tried" name="tried">
+                  <option value="">— Pick one —</option>
+                  <option value="Nothing serious yet">Nothing serious yet</option>
+                  <option value="DIY / founder-led">Tried DIY — founder sending manually</option>
+                  <option value="Agency/SDR — thin results">Ran an agency or SDR — results were thin</option>
+                  <option value="Active program, want to layer in more">Working agency or team — want to layer in more</option>
+                </select>
+              </div>
+              <div class="form-section">
+                <label class="form-label" for="timing">When would you want to start?</label>
+                <select class="form-select" id="timing" name="timing">
+                  <option value="">— Pick one —</option>
+                  <option value="This month">This month, if we find fit</option>
+                  <option value="Next 60 days">Next 60 days</option>
+                  <option value="Exploring">Exploring — no firm timeline</option>
+                </select>
+              </div>
+            </div>
+          </details>
+
+          <button type="submit" class="submit-btn">Send →</button>
+          <div class="form-note">Sends to jamil@getascent.co · Replies within 24 hours</div>
+        </form>
+
+      </div>
+
+      <!-- Success state -->
+      <div class="success-state" id="success-state">
+        <div class="check">✓</div>
+        <h2>On its <em>way</em>.</h2>
+        <p>Your message has opened in your email app, ready to send. Once it lands, I'll reply within 24 hours with a few times for a call.</p>
+        <a class="mailto-fallback" id="mailto-fallback" href="#">Didn't open? Click here to send manually</a>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR COLUMN -->
+    <aside class="contact-sidebar">
+
+      <div class="sidebar-block">
+        <span class="mono">§ Direct</span>
+        <h3>Prefer <em>email</em>?</h3>
+        <p>Skip the form and write directly. Same inbox either way.</p>
+        <a href="mailto:jamil@getascent.co?subject=Ascent%20%E2%80%94%20starting%20a%20conversation" class="direct">jamil@getascent.co →</a>
+      </div>
+
+      <div class="sidebar-block">
+        <span class="mono">§ What to expect</span>
+        <ul class="expectations">
+          <li>Reply within 24 hours. Usually faster.</li>
+          <li>First call is thirty minutes. No deck, no pitch.</li>
+          <li>Honest answer either way — fit or not fit.</li>
+          <li>No follow-ups if you go quiet.</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-block sidebar-magnet">
+        <span class="mono">§ Not ready for a call?</span>
+        <h3>Get a <em>free outbound diagnostic</em>.</h3>
+        <p>Send your current setup — a profile, an email, a sequence. I'll send back a 10-min written teardown of what's leaking and what to fix first. No call required. Written by a human.</p>
+        <a href="/fit.html" class="direct">Take the 2-min fit check →</a>
+      </div>
+
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ascent<span class="dot">.</span></div>
+        <div class="footer-tag">Outbound, owned.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/thinking.html">Thinking</a>
+        <a href="/work.html">Work</a>
+        <a href="/tools.html">Ascent Lab</a>
+        <a href="/fit.html">Check fit</a>
+      <a href="/tools.html">Ascent Lab</a>
+        <a href="/contact.html">Contact</a>
+        <a href="mailto:jamil@getascent.co">jamil@getascent.co</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Ascent</span>
+      <span>getascent.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // =========================================================================
+  // Read fit assessment result (if user came from /fit.html)
+  // =========================================================================
+  const RECIPIENT = 'jamil@getascent.co';
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const source = urlParams.get('source'); // 'fit-strong' or 'fit-likely'
+
+  let fitContext = null;
+  try {
+    const stored = localStorage.getItem('ascent_fit_result');
+    if (stored) fitContext = JSON.parse(stored);
+  } catch(_) {}
+
+  // If we have fit context, show the banner and pre-fill fields we can
+  if (fitContext && (source || fitContext.answers)) {
+    const banner = document.getElementById('fit-banner');
+    const title = document.getElementById('fit-banner-title');
+    const copy = document.getElementById('fit-banner-copy');
+
+    banner.classList.remove('hidden');
+    banner.style.display = 'flex';
+
+    const verdict = fitContext.verdict || '';
+    if (verdict) {
+      title.textContent = `Fit check result: ${verdict.replace('.', '')}`;
+    }
+    copy.textContent = 'We\'ve loaded your answers into this message so the first call can start with context, not questions.';
+
+    // Pre-fill ACV if we have it
+    const acvMap = {
+      'low': 'Small',
+      'mid-low': 'Mid-low',
+      'mid': 'Mid',
+      'high': 'Large'
+    };
+    if (fitContext.answers && fitContext.answers.acv && acvMap[fitContext.answers.acv]) {
+      document.getElementById('acv').value = acvMap[fitContext.answers.acv];
+    }
+
+    const triedMap = {
+      'none': 'Nothing serious yet',
+      'diy': 'DIY / founder-led',
+      'burnt': 'Agency/SDR — thin results',
+      'working': 'Active program, want to layer in more'
+    };
+    if (fitContext.answers && fitContext.answers.tried && triedMap[fitContext.answers.tried]) {
+      document.getElementById('tried').value = triedMap[fitContext.answers.tried];
+    }
+
+    const timingMap = {
+      'now': 'This month',
+      'soon': 'Next 60 days',
+      'explore': 'Exploring'
+    };
+    if (fitContext.answers && fitContext.answers.timing && timingMap[fitContext.answers.timing]) {
+      document.getElementById('timing').value = timingMap[fitContext.answers.timing];
+    }
+  }
+
+  // =========================================================================
+  // Form submission — writes a clean email to jamil@getascent.co
+  // =========================================================================
+  function submitForm(e) {
+    e.preventDefault();
+    const f = e.target;
+    const d = {
+      name:    f.name.value.trim(),
+      email:   f.email.value.trim(),
+      company: f.company.value.trim(),
+      role:    f.role.value.trim(),
+      acv:     f.acv.value,
+      tried:   f.tried.value,
+      timing:  f.timing.value,
+      message: f.message.value.trim()
+    };
+
+    // Subject line — uses source param if present so Jamil can sort fit-check leads
+    let subject = `Ascent — ${d.company}`;
+    if (source === 'fit-strong') subject = `Ascent — strong fit — ${d.company}`;
+    else if (source === 'fit-likely') subject = `Ascent — likely fit — ${d.company}`;
+
+    // Body — clean plain text, every field included, fit result appended if present
+    let body = '';
+    body += `Hi Jamil,\n\n`;
+    body += `${d.message}\n\n`;
+    body += `---\n`;
+    body += `Name: ${d.name}\n`;
+    body += `Email: ${d.email}\n`;
+    body += `Company: ${d.company}\n`;
+    if (d.role)   body += `Role: ${d.role}\n`;
+    if (d.acv)    body += `Deal size: ${d.acv}\n`;
+    if (d.tried)  body += `Tried: ${d.tried}\n`;
+    if (d.timing) body += `Timing: ${d.timing}\n`;
+
+    if (fitContext) {
+      body += `\n--- Fit check result ---\n`;
+      if (fitContext.verdict) body += `Verdict: ${fitContext.verdict}\n`;
+      if (typeof fitContext.score === 'number') body += `Score: ${fitContext.score}/12\n`;
+      if (fitContext.answers) {
+        body += `Stage: ${fitContext.answers.stage || '—'}\n`;
+        body += `Owner: ${fitContext.answers.owner || '—'}\n`;
+      }
+    }
+
+    body += `\n— Sent from getascent.co`;
+
+    const mailto = `mailto:${RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Store submission locally for Jamil's own records if JS analytics are ever wired in
+    try {
+      const leads = JSON.parse(localStorage.getItem('ascent_contact_leads') || '[]');
+      leads.push({ ...d, source, fitContext, at: new Date().toISOString() });
+      localStorage.setItem('ascent_contact_leads', JSON.stringify(leads));
+    } catch(_) {}
+
+    // Set mailto fallback link so if the mail client didn't open, the user can click manually
+    document.getElementById('mailto-fallback').setAttribute('href', mailto);
+
+    // Trigger the email client
+    window.location.href = mailto;
+
+    // Swap to success state
+    setTimeout(() => {
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('success-state').classList.add('shown');
+    }, 400);
+
+    return false;
+  }
+</script>
+
+<script src="/shared.js" defer></script>
+</body>
+</html>
